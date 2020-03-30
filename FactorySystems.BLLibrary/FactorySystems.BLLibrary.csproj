@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FactorySystems.CommonLibrary\FactorySystems.CommonLibrary.csproj" />
+    <ProjectReference Include="..\FactorySystems.DALibrary\FactorySystems.DALibrary.csproj" />
+  </ItemGroup>
+
+</Project>

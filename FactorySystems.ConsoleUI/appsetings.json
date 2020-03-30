@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "Default": "Data Source=.;Initial Catalog=FactorySystems;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+  }
+}
