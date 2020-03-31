@@ -57,7 +57,6 @@ namespace FactorySystems.DALibrary
 
                 var id = p.Get<V>($"@{keyName}");
 
-
                 return id;
             }
         }

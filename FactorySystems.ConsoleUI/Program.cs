@@ -18,6 +18,10 @@ namespace FactorySystems.ConsoleUI
             PlantData plant = new PlantData(Connection);
 
             DepartmentData department = new DepartmentData(Connection);
+
+
+            var pl = await plant.GetPlantList(new PlantModel());
+
             PlantModel plantModel = new PlantModel
             {
                 Name = "Prima fabrica",
@@ -28,7 +32,6 @@ namespace FactorySystems.ConsoleUI
             };
 
             int x = await plant.InsertPlant(plantModel);
-            Console.WriteLine(x);
 
             plantModel.PlantId = x;
 
@@ -43,11 +46,8 @@ namespace FactorySystems.ConsoleUI
 
             departmentModel.DepartmentId = dep;
 
-            DepartmentModel model = new DepartmentModel
-            {
-                DepartmentId = 0,
-                Name = "%",
-            };
+            DepartmentModel model = new DepartmentModel();
+
 
             var dep2 = await department.GetDepartmentList(model);
 

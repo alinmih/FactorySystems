@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE Company.DeleteDepartment
+﻿-- Alter Procedure DepartmentDelete
+CREATE PROCEDURE Company.DepartmentDelete
 		@DepartmentId [int]
 AS
 	SET NOCOUNT ON

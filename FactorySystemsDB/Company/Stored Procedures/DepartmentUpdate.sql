@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE Company.UpdateDepartment
+﻿-- Alter Procedure DepartmentUpdate
+CREATE PROCEDURE Company.DepartmentUpdate
 	(
 		@DepartmentId [int],
 		@PlantId [int],

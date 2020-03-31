@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace FactorySystems.BLLibrary
 {
@@ -53,27 +54,13 @@ namespace FactorySystems.BLLibrary
         public Task<List<DepartmentModel>> GetDepartmentList(DepartmentModel department)
         {
             string procName = "Company.DepartmentSelect";
-
-            if (department.DepartmentId ==0)
+            dynamic para = new { department.Name };
+            if (department.PlantId !=0)
             {
-                return _db.LoadData<DepartmentModel, dynamic>(procName, new
-                {
-                    DepartmentId="%",
-                    department.Name
-                });
-            }
-            else
-            {
-                return _db.LoadData<DepartmentModel, dynamic>(procName, new
-                {
-                    department.DepartmentId,
-                    department.Name
-                });
+                para = new { department.Name, department.PlantId };
             }
 
-           
-
-
+            return _db.LoadData<DepartmentModel, dynamic>(procName, para);
         }
     }
 }

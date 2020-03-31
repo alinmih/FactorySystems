@@ -14,6 +14,13 @@ namespace FactorySystems.CommonLibrary.Models
     /// </summary>
     public class DepartmentModel
     {
+        public DepartmentModel()
+        {
+            DepartmentId = 0;
+            PlantId = 0;
+            Name = "%";
+            Description = "";
+        }
         /// <summary>
         /// Annotation for getting the property name in DAL
         /// Primary key in SQL

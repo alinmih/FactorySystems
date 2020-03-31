@@ -81,14 +81,6 @@
     <Build Include="dbo\Stored Procedures\uspPrintError.sql" />
     <Build Include="dbo\Stored Procedures\uspLogError.sql" />
     <Build Include="dbo\Stored Procedures\uspGetErrorInfo.sql" />
-    <Build Include="Company\Stored Procedures\SelectPlant.sql" />
-    <Build Include="Company\Stored Procedures\DeletePlant.sql" />
-    <Build Include="Company\Stored Procedures\UpdatePlant.sql" />
-    <Build Include="Company\Stored Procedures\InsertPlant.sql" />
-    <Build Include="Company\Stored Procedures\DeleteDepartment.sql" />
-    <Build Include="Company\Stored Procedures\UpdateDepartment.sql" />
-    <Build Include="Company\Stored Procedures\InsertDepartment.sql" />
-    <Build Include="Company\Stored Procedures\SelectDepartment.sql" />
     <Build Include="Company\Stored Procedures\DeleteCostCenter.sql" />
     <Build Include="Company\Stored Procedures\UpdateCostCenter.sql" />
     <Build Include="Company\Stored Procedures\InsertCostCenter.sql" />
@@ -97,7 +89,16 @@
     <Build Include="dbo\User Defined Types\LongDescription.sql" />
     <Build Include="dbo\User Defined Types\KeyInt.sql" />
     <Build Include="Security\Company.sql" />
-    <Build Include="Company\Stored Procedures\SelectPlantById.sql" />
+    <Build Include="Company\Stored Procedures\PlantUpdate.sql" />
+    <Build Include="Company\Stored Procedures\PlantSelectById.sql" />
+    <Build Include="Company\Stored Procedures\PlantSelect.sql" />
+    <Build Include="Company\Stored Procedures\PlantInsert.sql" />
+    <Build Include="Company\Stored Procedures\PlantDelete.sql" />
+    <Build Include="Company\Stored Procedures\DepartmentUpdate.sql" />
+    <Build Include="Company\Stored Procedures\DepartmentSelectById.sql" />
+    <Build Include="Company\Stored Procedures\DepartmentSelect.sql" />
+    <Build Include="Company\Stored Procedures\DepartmentInsert.sql" />
+    <Build Include="Company\Stored Procedures\DepartmentDelete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compares\SqlSchemaCompareWithSSMS.scmp" />

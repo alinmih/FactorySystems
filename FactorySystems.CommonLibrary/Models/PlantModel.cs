@@ -16,6 +16,15 @@ namespace FactorySystems.CommonLibrary.Models
     /// </summary>
     public class PlantModel
     {
+        public PlantModel()
+        {
+            PlantId = 0;
+            Name = "%";
+            Address = "%";
+            City = "%";
+            Phone = "%";
+            Email = "%";
+        }
         /// <summary>
         /// Annotation for getting the property name in DAL
         /// Primary key in SQL

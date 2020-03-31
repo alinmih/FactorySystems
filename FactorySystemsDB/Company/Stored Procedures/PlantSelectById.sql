@@ -1,4 +1,5 @@
-﻿create PROC Company.SelectPlantById
+﻿-- Alter Procedure PlantSelectById
+CREATE PROC Company.PlantSelectById
 	(
 	@PlantId [int]
 	)
