@@ -18,9 +18,9 @@ namespace FactorySystems.ConsoleUI
 
             PlantData plant = new PlantData(Connection);
 
-
             DepartmentData department = new DepartmentData(Connection);
 
+            CostCenterData costcenter = new CostCenterData(Connection);
 
             var pl = await plant.GetPlantList(new PlantModel() { PlantId=3});
 
@@ -38,11 +38,29 @@ namespace FactorySystems.ConsoleUI
             DepartmentModel departmentModel = new DepartmentModel
             {
                 PlantId = plantModel.PlantId,
-                Name = "Asamblare2",
-                Description = "Departamentul de asamblare2",
+                Name = "Asamblare3",
+                //Description = "Departamentul de asamblare2",
             };
+
+            var dp = await department.GetDepartmentList(departmentModel);
+
+            CostCenterModel costCenterModel = new CostCenterModel
+            {
+                CostCenterId = 5,
+                DepartmentId = dp[0].DepartmentId,
+                Name = "Cost center33333",
+                Description = "Primul cost center22333332",
+                Cost = 222.99M,
+                AverageCost = 124.99M,
+                ModifiedDate = DateTime.Now
+            };
+
+            //int cc = await costcenter.InsertCostCenter(costCenterModel);
+            //await costcenter.DeleteCostCenter(1);
+            await costcenter.UpdateCostCenter(costCenterModel);
+            var ccc = await costcenter.GetCostCenterList(new CostCenterModel() {  });
             
-            int dep = await department.InsertDepartment(departmentModel);
+            //int dep = await department.InsertDepartment(departmentModel);
 
 
             //int x = await plant.InsertPlant(plantModel);
@@ -51,8 +69,6 @@ namespace FactorySystems.ConsoleUI
 
             dp = await department.GetDepartmentList(new DepartmentModel() { PlantId = 3 });
 
-
-            departmentModel.DepartmentId = dep;
 
             departmentModel.Name = "Asamblare2";
             departmentModel.PlantId = 1006;

@@ -81,10 +81,6 @@
     <Build Include="dbo\Stored Procedures\uspPrintError.sql" />
     <Build Include="dbo\Stored Procedures\uspLogError.sql" />
     <Build Include="dbo\Stored Procedures\uspGetErrorInfo.sql" />
-    <Build Include="Company\Stored Procedures\DeleteCostCenter.sql" />
-    <Build Include="Company\Stored Procedures\UpdateCostCenter.sql" />
-    <Build Include="Company\Stored Procedures\InsertCostCenter.sql" />
-    <Build Include="Company\Stored Procedures\SelectCostCenter.sql" />
     <Build Include="dbo\User Defined Types\ShortDescription.sql" />
     <Build Include="dbo\User Defined Types\LongDescription.sql" />
     <Build Include="dbo\User Defined Types\KeyInt.sql" />
@@ -99,6 +95,10 @@
     <Build Include="Company\Stored Procedures\DepartmentSelect.sql" />
     <Build Include="Company\Stored Procedures\DepartmentInsert.sql" />
     <Build Include="Company\Stored Procedures\DepartmentDelete.sql" />
+    <Build Include="Company\Stored Procedures\CostCenterUpdate.sql" />
+    <Build Include="Company\Stored Procedures\CostCenterSelect.sql" />
+    <Build Include="Company\Stored Procedures\CostCenterInsert.sql" />
+    <Build Include="Company\Stored Procedures\CostCenterDelete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compares\SqlSchemaCompareWithSSMS.scmp" />

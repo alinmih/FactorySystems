@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE Company.UpdateCostCenter
+﻿-- Alter Procedure CostCenterUpdate
+CREATE PROCEDURE Company.CostCenterUpdate
 	(
 		@CostCenterId [int],
 		@DepartmentId [int],
