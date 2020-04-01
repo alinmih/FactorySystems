@@ -14,12 +14,15 @@ namespace FactorySystems.CommonLibrary.Models
     /// </summary>
     public class DepartmentModel
     {
+        /// <summary>
+        /// Default constructor to initialize the properties with default value
+        /// </summary>
         public DepartmentModel()
         {
             DepartmentId = 0;
             PlantId = 0;
             Name = "%";
-            Description = "";
+            Description = "%";
         }
         /// <summary>
         /// Annotation for getting the property name in DAL

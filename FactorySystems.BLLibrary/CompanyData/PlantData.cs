@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FactorySystems.BLLibrary
+namespace FactorySystems.BLLibrary.CompanyData
 {
     public class PlantData
     {
@@ -33,18 +33,6 @@ namespace FactorySystems.BLLibrary
             return res;
         }
 
-        ///// <summary>
-        ///// Get plant object by Id
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //public Task<PlantModel> GetPlantById(int id)
-        //{
-        //    string procName = "Company.PlantSelectById";
-
-        //    return _db.LoadDataById<PlantModel, dynamic>(procName, new { PlantId = id });
-        //}
-
         /// <summary>
         /// Get all the plants from db based on plant object params
         /// </summary>
@@ -54,14 +42,7 @@ namespace FactorySystems.BLLibrary
         {
             string procName = "Company.PlantSelect";
 
-            return _db.LoadData<PlantModel, dynamic>(procName, new
-            {
-                plant.Name,
-                plant.Address,
-                plant.City,
-                plant.Phone,
-                plant.Email
-            });
+            return _db.LoadData<PlantModel, dynamic>(procName, plant);
         }
         
         /// <summary>

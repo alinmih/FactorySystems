@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using FactorySystems.CommonLibrary.Models;
 using System.Threading.Tasks;
+using FactorySystems.BLLibrary.CompanyData;
 
 namespace FactorySystems.ConsoleUI
 {
@@ -17,34 +18,48 @@ namespace FactorySystems.ConsoleUI
 
             PlantData plant = new PlantData(Connection);
 
+
             DepartmentData department = new DepartmentData(Connection);
 
 
-            var pl = await plant.GetPlantList(new PlantModel());
+            var pl = await plant.GetPlantList(new PlantModel() { PlantId=3});
+
 
             PlantModel plantModel = new PlantModel
             {
-                Name = "Prima fabrica",
-                Address = "Traian 4",
-                City = "Brasov",
-                Phone = "0722304315",
-                Email = "alin@alin.com"
+                PlantId= pl[0].PlantId,
+                Name = pl[0].Name,
+                Address = pl[0].Address,
+                City = pl[0].City,
+                Phone = pl[0].Phone,
+                Email = pl[0].Email
             };
-
-            int x = await plant.InsertPlant(plantModel);
-
-            plantModel.PlantId = x;
 
             DepartmentModel departmentModel = new DepartmentModel
             {
                 PlantId = plantModel.PlantId,
-                Name = "Asamblare",
-                Description = "Departamentul de asamblare",
+                Name = "Asamblare2",
+                Description = "Departamentul de asamblare2",
             };
-
+            
             int dep = await department.InsertDepartment(departmentModel);
 
+
+            //int x = await plant.InsertPlant(plantModel);
+
+            //plantModel.PlantId = x;
+
+            dp = await department.GetDepartmentList(new DepartmentModel() { PlantId = 3 });
+
+
             departmentModel.DepartmentId = dep;
+
+            departmentModel.Name = "Asamblare2";
+            departmentModel.PlantId = 1006;
+            departmentModel.Description = "Alt departament";
+            await department.UpdateDepartment(departmentModel);
+
+            await department.DeleteDepartment(12);
 
             DepartmentModel model = new DepartmentModel();
 

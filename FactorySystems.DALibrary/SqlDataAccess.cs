@@ -37,11 +37,13 @@ namespace FactorySystems.DALibrary
             {
                 var p = new DynamicParameters();
 
+                // Get the prop data types, names, values and attr
                 var props = parameters.GetType().GetProperties()
                     .Select(pi => new { Name = pi.Name, Value = pi.GetValue(parameters), Attr = pi.CustomAttributes.Count() }).ToList();
 
                 string keyName = "";
 
+                // Add props to dynamic params, search for key param and set it as oupup param to get the id from sql
                 foreach (var item in props)
                 {
                     if (item.Attr == 1)
@@ -53,8 +55,10 @@ namespace FactorySystems.DALibrary
                     p.Add($"@{item.Name}", item.Value);
                 }
 
+                // Execute sql command
                 var data = await connection.ExecuteAsync(procName, p, commandType: CommandType.StoredProcedure);
 
+                // Get the id from inserted row
                 var id = p.Get<V>($"@{keyName}");
 
                 return id;
@@ -91,6 +95,7 @@ namespace FactorySystems.DALibrary
         {
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
+                // Execute sql command
                 var data = await connection.QueryAsync<T>(procName, parameters, commandType: CommandType.StoredProcedure);
 
                 return data.ToList();
@@ -108,6 +113,7 @@ namespace FactorySystems.DALibrary
         {
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
+                // Execute sql command
                 var data = await connection.ExecuteAsync(procName, parameters, commandType: CommandType.StoredProcedure);
             }
         }
@@ -123,6 +129,7 @@ namespace FactorySystems.DALibrary
         {
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
+                // Execute sql command
                 var data = await connection.ExecuteAsync(procName, parameters, commandType: CommandType.StoredProcedure);
             }
         }

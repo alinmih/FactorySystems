@@ -16,6 +16,9 @@ namespace FactorySystems.CommonLibrary.Models
     /// </summary>
     public class PlantModel
     {
+        /// <summary>
+        /// Default constructor to initialize the properties with default value
+        /// </summary>
         public PlantModel()
         {
             PlantId = 0;

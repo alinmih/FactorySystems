@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CSharp.RuntimeBinder;
 
-namespace FactorySystems.BLLibrary
+namespace FactorySystems.BLLibrary.CompanyData
 {
     public class DepartmentData
     {
@@ -34,18 +34,6 @@ namespace FactorySystems.BLLibrary
             return res;
         }
 
-        ///// <summary>
-        ///// Get department object by Id
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //public Task<DepartmentModel> GetDepartmentById(int id)
-        //{
-        //    string procName = "Company.DepartmentSelectById";
-
-        //    return _db.LoadDataById<DepartmentModel, dynamic>(procName, new { DepartmentId = id });
-        //}
-
         /// <summary>
         /// Get all the departments from db based on department object params
         /// </summary>
@@ -54,13 +42,33 @@ namespace FactorySystems.BLLibrary
         public Task<List<DepartmentModel>> GetDepartmentList(DepartmentModel department)
         {
             string procName = "Company.DepartmentSelect";
-            dynamic para = new { department.Name };
-            if (department.PlantId !=0)
-            {
-                para = new { department.Name, department.PlantId };
-            }
 
-            return _db.LoadData<DepartmentModel, dynamic>(procName, para);
+            return _db.LoadData<DepartmentModel, dynamic>(procName, department);
+        }
+
+        /// <summary>
+        /// Update specific department from db
+        /// </summary>
+        /// <param name="department">Model to update</param>
+        /// <returns></returns>
+        public Task UpdateDepartment(DepartmentModel department)
+        {
+            string procName = "Company.DepartmentUpdate";
+
+            return _db.UpdateData(procName, department);
+        }
+
+        /// <summary>
+        /// Delete a department by id
+        /// </summary>
+        /// <param name="plantId">Id of the department</param>
+        /// <returns></returns>
+        public Task DeleteDepartment(int departmentId)
+        {
+            string procName = "Company.DepartmentDelete";
+
+            return _db.DeleteData(procName, new { DepartmentId = departmentId });
+
         }
     }
 }

@@ -1,17 +1,17 @@
 ﻿-- Alter Procedure DepartmentUpdate
 CREATE PROCEDURE Company.DepartmentUpdate
-	(
-		@DepartmentId [int],
-		@PlantId [int],
-		@Name [nvarchar](200),
-		@Description [nvarchar](4000)
-
-	)
+(@DepartmentId [INT], 
+ @PlantId      [INT], 
+ @Name         [NVARCHAR](200), 
+ @Description  [NVARCHAR](4000)
+)
 AS
-	SET NOCOUNT ON
-	
-	BEGIN TRANSACTION
-		UPDATE Company.Department WITH (rowlock)
-		SET  PlantId = @PlantId, Name = @Name, Description = @Description
-		WHERE (DepartmentId = @DepartmentId OR @DepartmentId IS NULL)
-	COMMIT
+    BEGIN
+        SET NOCOUNT ON;
+        UPDATE Company.Department WITH(ROWLOCK)
+          SET 
+              PlantId = @PlantId, 
+              Name = @Name, 
+              Description = @Description
+        WHERE(DepartmentId = @DepartmentId);
+    END;
