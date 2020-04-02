@@ -1,10 +1,10 @@
-﻿using FactorySystems.CommonLibrary.Models;
-using FactorySystems.DALibrary;
+﻿using FactorySystems.DALibrary;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CSharp.RuntimeBinder;
+using FactorySystems.CommonLibrary.PersistanceModels;
 
 namespace FactorySystems.BLLibrary.CompanyData
 {
@@ -23,7 +23,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Insert into DB a department object
         /// </summary>
-        /// <param name="department"></param>
+        /// <param name="department">PersistenceModel send as param with default or specific props</param>
         /// <returns></returns>
         public Task<int> InsertDepartment(DepartmentModel department)
         {

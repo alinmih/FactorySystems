@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace FactorySystems.CommonLibrary.Models
+namespace FactorySystems.CommonLibrary.PersistanceModels
 {
     /// <summary>
     /// Types of params from SQL:
@@ -54,5 +54,6 @@ namespace FactorySystems.CommonLibrary.Models
         /// Email Address
         /// </summary>
         public string Email { get; set; }
+
     }
 }

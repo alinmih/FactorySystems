@@ -1,4 +1,4 @@
-﻿using FactorySystems.CommonLibrary.Models;
+﻿using FactorySystems.CommonLibrary.PersistanceModels;
 using FactorySystems.DALibrary;
 using System;
 using System.Collections.Generic;

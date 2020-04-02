@@ -99,6 +99,14 @@
     <Build Include="Company\Stored Procedures\CostCenterSelect.sql" />
     <Build Include="Company\Stored Procedures\CostCenterInsert.sql" />
     <Build Include="Company\Stored Procedures\CostCenterDelete.sql" />
+    <Build Include="Company\Stored Procedures\MachineStatusUpdate.sql" />
+    <Build Include="Company\Stored Procedures\MachineStatusSelect.sql" />
+    <Build Include="Company\Stored Procedures\MachineStatusInsert.sql" />
+    <Build Include="Company\Stored Procedures\MachineStatusDelete.sql" />
+    <Build Include="Company\Stored Procedures\MachineCategoryUpdate.sql" />
+    <Build Include="Company\Stored Procedures\MachineCategorySelect.sql" />
+    <Build Include="Company\Stored Procedures\MachineCategoryInsert.sql" />
+    <Build Include="Company\Stored Procedures\MachineCategoryDelete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compares\SqlSchemaCompareWithSSMS.scmp" />

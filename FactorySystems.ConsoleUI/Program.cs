@@ -1,10 +1,9 @@
-﻿using FactorySystems.BLLibrary;
-using FactorySystems.DALibrary;
+﻿using FactorySystems.DALibrary;
 using static FactorySystems.DALibrary.GlobalConfig;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
-using FactorySystems.CommonLibrary.Models;
+using FactorySystems.CommonLibrary.PersistanceModels;
 using System.Threading.Tasks;
 using FactorySystems.BLLibrary.CompanyData;
 
@@ -22,7 +21,26 @@ namespace FactorySystems.ConsoleUI
 
             CostCenterData costcenter = new CostCenterData(Connection);
 
+            MachineCategoryData machineCategory = new MachineCategoryData(Connection);
+
             var pl = await plant.GetPlantList(new PlantModel() { PlantId=3});
+
+            MachineCategoryModel categoryModel = new MachineCategoryModel
+            {
+                Category = "Finite"
+            };
+
+            var id = await machineCategory.InsertMachineCategory(categoryModel);
+            var cat = await machineCategory.GetMachineCategoryList(new MachineCategoryModel());
+            var cat2 = await machineCategory.GetMachineCategoryList(new MachineCategoryModel() { Category="Finite"});
+            MachineCategoryModel categoryModel2 = new MachineCategoryModel
+            {
+                MachineCategoryId = id,
+                Category = "Infinite"
+            };
+            await machineCategory.UpdateMachineCategory(categoryModel2);
+            await machineCategory.DeleteMachineCategory(cat2[0].MachineCategoryId);
+
 
 
             PlantModel plantModel = new PlantModel
