@@ -23,7 +23,31 @@ namespace FactorySystems.ConsoleUI
 
             MachineCategoryData machineCategory = new MachineCategoryData(Connection);
 
-            var pl = await plant.GetPlantList(new PlantModel() { PlantId=3});
+            MachineStatusData machineStatus = new MachineStatusData(Connection);
+
+
+            var pl = await plant.GetPlantList(new PlantModel() { PlantId = 3 });
+
+            MachineStatusModel statusModel = new MachineStatusModel
+            {
+                Status = "Stopped"
+            };
+            var st = await machineStatus.InsertMachineStatus(statusModel);
+            var st2 = await machineStatus.GetMachineStatusList(new MachineStatusModel());
+            var st3 = await machineStatus.GetMachineStatusList(new MachineStatusModel() { Status = "Stopped" });
+
+            MachineStatusModel statusModel2 = new MachineStatusModel
+            {
+                MachineStatusId = st,
+                Status = "Running"
+            };
+
+            await machineStatus.UpdateMachineStatus(statusModel2);
+            await machineStatus.DeleteMachineStatus(st);
+
+
+
+
 
             MachineCategoryModel categoryModel = new MachineCategoryModel
             {
@@ -32,7 +56,7 @@ namespace FactorySystems.ConsoleUI
 
             var id = await machineCategory.InsertMachineCategory(categoryModel);
             var cat = await machineCategory.GetMachineCategoryList(new MachineCategoryModel());
-            var cat2 = await machineCategory.GetMachineCategoryList(new MachineCategoryModel() { Category="Finite"});
+            var cat2 = await machineCategory.GetMachineCategoryList(new MachineCategoryModel() { Category = "Finite" });
             MachineCategoryModel categoryModel2 = new MachineCategoryModel
             {
                 MachineCategoryId = id,
@@ -45,7 +69,7 @@ namespace FactorySystems.ConsoleUI
 
             PlantModel plantModel = new PlantModel
             {
-                PlantId= pl[0].PlantId,
+                PlantId = pl[0].PlantId,
                 Name = pl[0].Name,
                 Address = pl[0].Address,
                 City = pl[0].City,
@@ -76,8 +100,8 @@ namespace FactorySystems.ConsoleUI
             //int cc = await costcenter.InsertCostCenter(costCenterModel);
             //await costcenter.DeleteCostCenter(1);
             await costcenter.UpdateCostCenter(costCenterModel);
-            var ccc = await costcenter.GetCostCenterList(new CostCenterModel() {  });
-            
+            var ccc = await costcenter.GetCostCenterList(new CostCenterModel() { });
+
             //int dep = await department.InsertDepartment(departmentModel);
 
 
@@ -100,7 +124,7 @@ namespace FactorySystems.ConsoleUI
 
             var dep2 = await department.GetDepartmentList(model);
 
-            
+
 
             PlantModel plantModel3 = new PlantModel
             {
@@ -127,8 +151,8 @@ namespace FactorySystems.ConsoleUI
 
             //await plant.GetPlants();
 
-            
-        
+
+
         }
 
 
