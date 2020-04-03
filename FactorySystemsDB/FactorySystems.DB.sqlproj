@@ -107,6 +107,14 @@
     <Build Include="Company\Stored Procedures\MachineCategorySelect.sql" />
     <Build Include="Company\Stored Procedures\MachineCategoryInsert.sql" />
     <Build Include="Company\Stored Procedures\MachineCategoryDelete.sql" />
+    <Build Include="Company\Stored Procedures\MachineUpdate.sql" />
+    <Build Include="Company\Stored Procedures\MachineSelect.sql" />
+    <Build Include="Company\Stored Procedures\MachineInsert.sql" />
+    <Build Include="Company\Stored Procedures\MachineDelete.sql" />
+    <Build Include="Company\Stored Procedures\DutyUpdate.sql" />
+    <Build Include="Company\Stored Procedures\DutySelect.sql" />
+    <Build Include="Company\Stored Procedures\DutyInsert.sql" />
+    <Build Include="Company\Stored Procedures\DutyDelete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compares\SqlSchemaCompareWithSSMS.scmp" />

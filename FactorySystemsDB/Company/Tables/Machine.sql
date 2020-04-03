@@ -9,7 +9,7 @@
     [SetupTime]         NUMERIC (18, 3) NULL,
     [ProcessTime]       NUMERIC (18, 3) NULL,
     [PartsPerCycle]     NUMERIC (18, 1) NULL,
-    [AlarmOnOff]        BIT             NULL,
+    [AlarmOnOff]        INT             NULL,
     [AlarmDate]         DATETIME2 (7)   NULL,
     [ActivityDate]      DATETIME2 (7)   NULL,
     [LastActivityDate]  DATETIME2 (7)   NULL,
@@ -19,4 +19,6 @@
     CONSTRAINT [FK_Machine_MachineCategory] FOREIGN KEY ([MachineCategoryId]) REFERENCES [Company].[MachineCategory] ([MachineCategoryId]),
     CONSTRAINT [FK_Machine_MachineStatus] FOREIGN KEY ([MachineStatusId]) REFERENCES [Company].[MachineStatus] ([MachineStatusId])
 );
+
+
 

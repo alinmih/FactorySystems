@@ -22,7 +22,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Insert into DB a department object
         /// </summary>
-        /// <param name="department"></param>
+        /// <param name="costCenter"></param>
         /// <returns></returns>
         public Task<int> InsertCostCenter(CostCenterModel costCenter)
         {
@@ -36,7 +36,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Get all the costcenters from db based on costcenter object params
         /// </summary>
-        /// <param name="plant">Model to search for. Params must be initialized with '%' for search</param>
+        /// <param name="costCenter">Model to search for. Params must be initialized with '%' for search</param>
         /// <returns></returns>
         public Task<List<CostCenterModel>> GetCostCenterList(CostCenterModel costCenter)
         {
@@ -48,7 +48,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Update specific department from db
         /// </summary>
-        /// <param name="department">Model to update</param>
+        /// <param name="costCenter">Model to update</param>
         /// <returns></returns>
         public Task UpdateCostCenter(CostCenterModel costCenter)
         {
@@ -60,7 +60,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Delete a department by id
         /// </summary>
-        /// <param name="plantId">Id of the department</param>
+        /// <param name="costCenterId">Id of the department</param>
         /// <returns></returns>
         public Task DeleteCostCenter(int costCenterId)
         {
