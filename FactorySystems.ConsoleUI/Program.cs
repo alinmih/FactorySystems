@@ -31,8 +31,9 @@ namespace FactorySystems.ConsoleUI
 
             OperatorGroupData operatorGroup = new OperatorGroupData(Connection);
 
+            OperatorData operatorData = new OperatorData(Connection);
 
-
+ 
         }
 
 
