@@ -73,7 +73,6 @@
     <Build Include="Company\Tables\MachineCategory.sql" />
     <Build Include="Company\Tables\MachineStatus.sql" />
     <Build Include="Company\Tables\Operator.sql" />
-    <Build Include="Company\Tables\Duty.sql" />
     <Build Include="Company\Tables\OperatorGroup.sql" />
     <Build Include="Company\Tables\Department.sql" />
     <Build Include="Company\Tables\Plant.sql" />
@@ -111,10 +110,19 @@
     <Build Include="Company\Stored Procedures\MachineSelect.sql" />
     <Build Include="Company\Stored Procedures\MachineInsert.sql" />
     <Build Include="Company\Stored Procedures\MachineDelete.sql" />
-    <Build Include="Company\Stored Procedures\DutyUpdate.sql" />
-    <Build Include="Company\Stored Procedures\DutySelect.sql" />
-    <Build Include="Company\Stored Procedures\DutyInsert.sql" />
-    <Build Include="Company\Stored Procedures\DutyDelete.sql" />
+    <Build Include="Company\Tables\OperatorDuty.sql" />
+    <Build Include="Company\Stored Procedures\OperatorUpdate.sql" />
+    <Build Include="Company\Stored Procedures\OperatorSelect.sql" />
+    <Build Include="Company\Stored Procedures\OperatorInsert.sql" />
+    <Build Include="Company\Stored Procedures\OperatorGroupUpdate.sql" />
+    <Build Include="Company\Stored Procedures\OperatorGroupSelect.sql" />
+    <Build Include="Company\Stored Procedures\OperatorGroupInsert.sql" />
+    <Build Include="Company\Stored Procedures\OperatorGroupDelete.sql" />
+    <Build Include="Company\Stored Procedures\OperatorDutyUpdate.sql" />
+    <Build Include="Company\Stored Procedures\OperatorDutySelect.sql" />
+    <Build Include="Company\Stored Procedures\OperatorDutyInsert.sql" />
+    <Build Include="Company\Stored Procedures\OperatorDutyDelete.sql" />
+    <Build Include="Company\Stored Procedures\OperatorDelete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compares\SqlSchemaCompareWithSSMS.scmp" />

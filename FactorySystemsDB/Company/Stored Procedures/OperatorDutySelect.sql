@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE Company.DutySelect
+﻿-- Alter Procedure OperatorDutySelect
+CREATE PROCEDURE [Company].[OperatorDutySelect]
 	(
 		@DutyId [int],
 		@DutyName [nvarchar](200)
@@ -8,7 +9,7 @@ BEGIN
 	SET NOCOUNT ON
 
 	SELECT DutyId, DutyName
-	FROM Company.Duty WITH (NOLOCK)
+	FROM Company.OperatorDuty WITH (NOLOCK)
 	WHERE ((DutyId=@DutyId)or(@DutyId=0)) and
 		 DutyName like @DutyName
 END

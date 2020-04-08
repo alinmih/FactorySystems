@@ -28,7 +28,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorGroupInsert";
 
-            var res = _db.SaveData<OperatorGroupModel, int>(procName, group);
+            var res = _db.SaveDataAsync<OperatorGroupModel, int>(procName, group);
 
             return res;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorGroupSelect";
 
-            return _db.LoadData<OperatorGroupModel, dynamic>(procName, group);
+            return _db.LoadDataAsync<OperatorGroupModel, dynamic>(procName, group);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorGroupUpdate";
 
-            return _db.UpdateData(procName, group);
+            return _db.UpdateDataAsync(procName, group);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorGroupDelete";
 
-            return _db.DeleteData(procName, new { OperatorGroupId = groupId });
+            return _db.DeleteDataAsync(procName, new { OperatorGroupId = groupId });
         }
     }
 }

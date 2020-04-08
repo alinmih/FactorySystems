@@ -17,10 +17,20 @@ namespace FactorySystems.DALibrary
     public class SqlDataAccess : ISqlDataAccess
     {
         //Get connection string from GlobalConfig static class
-        private readonly string connectionString = GlobalConfig.GetConnectionString();
+        private readonly IConfiguration configuration;
+        private string connectionString;
+
 
         public SqlDataAccess()
         {
+            connectionString = GlobalConfig.GetConnectionString();
+        }
+
+        public SqlDataAccess(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+            connectionString = this.configuration.GetConnectionString("Default");
+
         }
 
         /// <summary>
@@ -31,8 +41,9 @@ namespace FactorySystems.DALibrary
         /// <param name="procName">Name of the stored procedure</param>
         /// <param name="parameters">Object to be passed</param>
         /// <returns>Returns from db the id of the inserted object</returns>
-        public async Task<V> SaveData<U, V>(string procName, U parameters)
+        public async Task<V> SaveDataAsync<U, V>(string procName, U parameters)
         {
+            
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 var p = new DynamicParameters();
@@ -65,24 +76,6 @@ namespace FactorySystems.DALibrary
             }
         }
 
-        ///// <summary>
-        ///// Load one object by id from db
-        ///// </summary>
-        ///// <typeparam name="T">Type of object to return</typeparam>
-        ///// <typeparam name="U">Type of object to be passed</typeparam>
-        ///// <param name="procName">Stored procedure name</param>
-        ///// <param name="parameters">Object param</param>
-        ///// <returns>Object T</returns>
-        //public async Task<T> LoadDataById<T, U>(string procName, U parameters)
-        //{
-        //    using (IDbConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        var data = await connection.QueryFirstAsync<T>(procName, parameters, commandType: CommandType.StoredProcedure);
-
-        //        return data;
-        //    }
-        //}
-
         /// <summary>
         /// Load all the data from db table
         /// </summary>
@@ -91,8 +84,10 @@ namespace FactorySystems.DALibrary
         /// <param name="procName">Stored procedure name</param>
         /// <param name="parameters">Object param</param>
         /// <returns>List<T> object</returns>
-        public async Task<List<T>> LoadData<T, U>(string procName, U parameters)
+        public async Task<List<T>> LoadDataAsync<T, U>(string procName, U parameters)
         {
+            //connectionString = configuration.GetConnectionString("Default");
+
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 // Execute sql command
@@ -109,7 +104,7 @@ namespace FactorySystems.DALibrary
         /// <param name="procName">Stored procedure name</param>
         /// <param name="parameters">Object param</param>
         /// <returns>Returns void</returns>
-        public async Task UpdateData<U>(string procName, U parameters)
+        public async Task UpdateDataAsync<U>(string procName, U parameters)
         {
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
@@ -125,7 +120,7 @@ namespace FactorySystems.DALibrary
         /// <param name="procName">Stored procedure name</param>
         /// <param name="parameters">Object param</param>
         /// <returns>Returns void</returns>
-        public async Task DeleteData<U>(string procName, U parameters)
+        public async Task DeleteDataAsync<U>(string procName, U parameters)
         {
             using (IDbConnection connection = new SqlConnection(connectionString))
             {

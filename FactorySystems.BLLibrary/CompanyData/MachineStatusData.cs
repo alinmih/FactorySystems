@@ -28,7 +28,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineStatusInsert";
 
-            var res = _db.SaveData<MachineStatusModel, int>(procName, machineStatus);
+            var res = _db.SaveDataAsync<MachineStatusModel, int>(procName, machineStatus);
 
             return res;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineStatusSelect";
 
-            return _db.LoadData<MachineStatusModel, dynamic>(procName, machineStatus);
+            return _db.LoadDataAsync<MachineStatusModel, dynamic>(procName, machineStatus);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineStatusUpdate";
 
-            return _db.UpdateData(procName, machineStatus);
+            return _db.UpdateDataAsync(procName, machineStatus);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineStatusDelete";
 
-            return _db.DeleteData(procName, new { MachineStatusId = machineStatusId });
+            return _db.DeleteDataAsync(procName, new { MachineStatusId = machineStatusId });
         }
     }
 }

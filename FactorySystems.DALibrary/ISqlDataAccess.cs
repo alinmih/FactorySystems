@@ -5,14 +5,12 @@ namespace FactorySystems.DALibrary
 {
     public interface ISqlDataAccess
     {
-        Task<V> SaveData<U, V>(string procName, U parameters);
+        Task<V> SaveDataAsync<U, V>(string procName, U parameters);
 
-        Task<List<T>> LoadData<T,U>(string procName, U parameters);
+        Task<List<T>> LoadDataAsync<T, U>(string procName, U parameters);
 
-        //Task<T> LoadDataById<T,U>(string procName, U parameters);
+        Task UpdateDataAsync<U>(string procName, U parameters);
 
-        Task UpdateData<U>(string procName, U parameters);
-
-        Task DeleteData<U>(string procName, U parameters);
+        Task DeleteDataAsync<U>(string procName, U parameters);
     }
 }

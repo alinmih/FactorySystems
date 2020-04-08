@@ -28,7 +28,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineCategoryInsert";
 
-            var res = _db.SaveData<MachineCategoryModel, int>(procName, machineCategory);
+            var res = _db.SaveDataAsync<MachineCategoryModel, int>(procName, machineCategory);
 
             return res;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineCategorySelect";
 
-            return _db.LoadData<MachineCategoryModel, dynamic>(procName, machineCategory);
+            return _db.LoadDataAsync<MachineCategoryModel, dynamic>(procName, machineCategory);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineCategoryUpdate";
 
-            return _db.UpdateData(procName, machineCategory);
+            return _db.UpdateDataAsync(procName, machineCategory);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineCategoryDelete";
 
-            return _db.DeleteData(procName, new { MachineCategoryId = machineCategoryId });
+            return _db.DeleteDataAsync(procName, new { MachineCategoryId = machineCategoryId });
         }
     }
 }

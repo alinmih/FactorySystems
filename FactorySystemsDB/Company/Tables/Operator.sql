@@ -9,7 +9,9 @@
     [LastActionTime]  DATETIME2 (7)  NULL,
     CONSTRAINT [PK_Operator] PRIMARY KEY CLUSTERED ([OperatorId] ASC),
     CONSTRAINT [FK_Operator_Department] FOREIGN KEY ([DepartmentId]) REFERENCES [Company].[Department] ([DepartmentId]),
-    CONSTRAINT [FK_Operator_Duty] FOREIGN KEY ([DutyId]) REFERENCES [Company].[Duty] ([DutyId]),
+    CONSTRAINT [FK_Operator_Duty] FOREIGN KEY ([DutyId]) REFERENCES [Company].[OperatorDuty] ([DutyId]),
     CONSTRAINT [FK_Operator_OperatorGroup] FOREIGN KEY ([OperatorGroupId]) REFERENCES [Company].[OperatorGroup] ([OperatorGroupId])
 );
+
+
 

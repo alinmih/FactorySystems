@@ -28,7 +28,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorDutyInsert";
 
-            var res = _db.SaveData<OperatorDutyModel, int>(procName, duty);
+            var res = _db.SaveDataAsync<OperatorDutyModel, int>(procName, duty);
 
             return res;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorDutySelect";
 
-            return _db.LoadData<OperatorDutyModel, dynamic>(procName, duty);
+            return _db.LoadDataAsync<OperatorDutyModel, dynamic>(procName, duty);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorDutyUpdate";
 
-            return _db.UpdateData(procName, duty);
+            return _db.UpdateDataAsync(procName, duty);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorDutyDelete";
 
-            return _db.DeleteData(procName, new { DutyId = dutyId });
+            return _db.DeleteDataAsync(procName, new { DutyId = dutyId });
         }
     }
 }

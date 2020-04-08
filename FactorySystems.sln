@@ -3,17 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystems.BLLibrary", "FactorySystems.BLLibrary\FactorySystems.BLLibrary.csproj", "{67EE36C2-D653-4F39-8008-A3569E6CDB87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.BLLibrary", "FactorySystems.BLLibrary\FactorySystems.BLLibrary.csproj", "{67EE36C2-D653-4F39-8008-A3569E6CDB87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystems.DALibrary", "FactorySystems.DALibrary\FactorySystems.DALibrary.csproj", "{B29EC735-8960-40CF-970A-9B6229952EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.DALibrary", "FactorySystems.DALibrary\FactorySystems.DALibrary.csproj", "{B29EC735-8960-40CF-970A-9B6229952EB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystems.CommonLibrary", "FactorySystems.CommonLibrary\FactorySystems.CommonLibrary.csproj", "{E02190A9-212F-492A-B649-D4EA0D367224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.CommonLibrary", "FactorySystems.CommonLibrary\FactorySystems.CommonLibrary.csproj", "{E02190A9-212F-492A-B649-D4EA0D367224}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FactorySystems.DB", "FactorySystemsDB\FactorySystems.DB.sqlproj", "{1319527F-76BA-4242-A146-EE098D1271C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystems.WebUI", "FactorySystems.WebUI\FactorySystems.WebUI.csproj", "{AA34D463-8374-4CE3-B8B7-26ADE2BA1B60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.WebUI", "FactorySystems.WebUI\FactorySystems.WebUI.csproj", "{AA34D463-8374-4CE3-B8B7-26ADE2BA1B60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystems.ConsoleUI", "FactorySystems.ConsoleUI\FactorySystems.ConsoleUI.csproj", "{AFE1439C-E032-4444-9636-8171C29ECA9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.ConsoleUI", "FactorySystems.ConsoleUI\FactorySystems.ConsoleUI.csproj", "{AFE1439C-E032-4444-9636-8171C29ECA9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.CoreWebUI", "FactorySystems.CoreWebUI\FactorySystems.CoreWebUI.csproj", "{9FFBCFAD-7AF0-4008-89F6-E3039690FB58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystems.Root", "FactorySystems.Root\FactorySystems.Root.csproj", "{7921D08A-E90F-4D22-AD28-201AFD12F7A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{AFE1439C-E032-4444-9636-8171C29ECA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFE1439C-E032-4444-9636-8171C29ECA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFE1439C-E032-4444-9636-8171C29ECA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FFBCFAD-7AF0-4008-89F6-E3039690FB58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FFBCFAD-7AF0-4008-89F6-E3039690FB58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FFBCFAD-7AF0-4008-89F6-E3039690FB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FFBCFAD-7AF0-4008-89F6-E3039690FB58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7921D08A-E90F-4D22-AD28-201AFD12F7A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7921D08A-E90F-4D22-AD28-201AFD12F7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7921D08A-E90F-4D22-AD28-201AFD12F7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7921D08A-E90F-4D22-AD28-201AFD12F7A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

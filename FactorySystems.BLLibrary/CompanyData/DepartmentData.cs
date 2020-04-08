@@ -29,7 +29,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.DepartmentInsert";
 
-            var res = _db.SaveData<DepartmentModel, int>(procName, department);
+            var res = _db.SaveDataAsync<DepartmentModel, int>(procName, department);
 
             return res;
         }
@@ -43,7 +43,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.DepartmentSelect";
 
-            return _db.LoadData<DepartmentModel, dynamic>(procName, department);
+            return _db.LoadDataAsync<DepartmentModel, dynamic>(procName, department);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.DepartmentUpdate";
 
-            return _db.UpdateData(procName, department);
+            return _db.UpdateDataAsync(procName, department);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.DepartmentDelete";
 
-            return _db.DeleteData(procName, new { DepartmentId = departmentId });
+            return _db.DeleteDataAsync(procName, new { DepartmentId = departmentId });
 
         }
     }

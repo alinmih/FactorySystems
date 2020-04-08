@@ -1,4 +1,6 @@
-﻿CREATE PROCEDURE Company.DutyInsert
+﻿-- Alter Procedure OperatorDutyInsert
+-- Alter Procedure DutyInsert
+CREATE PROCEDURE Company.OperatorDutyInsert
 	(
 		@DutyName [nvarchar](200),
 		@DutyId [int] = 0 output
@@ -7,7 +9,7 @@ AS
 BEGIN
 	SET NOCOUNT ON
 
-	INSERT INTO Company.Duty WITH (ROWLOCK)
+	INSERT INTO Company.OperatorDuty WITH (ROWLOCK)
 	(
 		DutyName
 	)

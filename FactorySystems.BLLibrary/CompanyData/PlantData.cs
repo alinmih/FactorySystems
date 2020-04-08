@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FactorySystems.BLLibrary.CompanyData
 {
-    public class PlantData
+    public class PlantData : IPlantData
     {
         /// <summary>
         /// Reference to Sql data access layer
@@ -28,7 +28,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.PlantInsert";
 
-            var res = _db.SaveData<PlantModel, int>(procName, plant);
+            var res = _db.SaveDataAsync<PlantModel, int>(procName, plant);
 
             return res;
         }
@@ -42,9 +42,9 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.PlantSelect";
 
-            return _db.LoadData<PlantModel, dynamic>(procName, plant);
+            return _db.LoadDataAsync<PlantModel, dynamic>(procName, plant);
         }
-        
+
         /// <summary>
         /// Update specific plant from db
         /// </summary>
@@ -54,7 +54,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.PlantUpdate";
 
-            return _db.UpdateData(procName, plant);
+            return _db.UpdateDataAsync(procName, plant);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.PlantDelete";
 
-            return _db.DeleteData(procName, new { PlantId = plantId });
+            return _db.DeleteDataAsync(procName, new { PlantId = plantId });
         }
 
     }

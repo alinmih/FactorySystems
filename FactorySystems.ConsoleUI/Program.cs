@@ -15,9 +15,14 @@ namespace FactorySystems.ConsoleUI
         {
             InitializeConnection(DatabaseAccesType.Dapper);
 
+            var Connection = GlobalConfig.Connection;
+
+
             PlantData plant = new PlantData(Connection);
 
             DepartmentData department = new DepartmentData(Connection);
+
+            var d= await department.GetDepartmentList(new DepartmentModel());
 
             CostCenterData costcenter = new CostCenterData(Connection);
 

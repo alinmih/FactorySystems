@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FactorySystems.BLLibrary.CompanyData
 {
-    public class CostCenterData
+    public class CostCenterData : ICostCenterData
     {
         /// <summary>
         /// Reference to Sql data access layer
@@ -28,7 +28,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.CostCenterInsert";
 
-            var res = _db.SaveData<CostCenterModel, int>(procName, costCenter);
+            var res = _db.SaveDataAsync<CostCenterModel, int>(procName, costCenter);
 
             return res;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.CostCenterSelect";
 
-            return _db.LoadData<CostCenterModel, dynamic>(procName, costCenter);
+            return _db.LoadDataAsync<CostCenterModel, dynamic>(procName, costCenter);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.CostCenterUpdate";
 
-            return _db.UpdateData(procName, costCenter);
+            return _db.UpdateDataAsync(procName, costCenter);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.CostCenterDelete";
 
-            return _db.DeleteData(procName, new { CostCenterId = costCenterId });
+            return _db.DeleteDataAsync(procName, new { CostCenterId = costCenterId });
         }
     }
 }
