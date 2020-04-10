@@ -110,6 +110,7 @@ namespace FactorySystems.DALibrary
             {
                 // Execute sql command
                 var data = await connection.ExecuteAsync(procName, parameters, commandType: CommandType.StoredProcedure);
+
             }
         }
 

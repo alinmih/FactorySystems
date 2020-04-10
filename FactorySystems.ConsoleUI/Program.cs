@@ -6,6 +6,7 @@ using System.IO;
 using FactorySystems.CommonLibrary.PersistanceModels;
 using System.Threading.Tasks;
 using FactorySystems.BLLibrary.CompanyData;
+using FactorySystems.CommonLibrary.ViewModels;
 
 namespace FactorySystems.ConsoleUI
 {
@@ -19,6 +20,8 @@ namespace FactorySystems.ConsoleUI
 
 
             PlantData plant = new PlantData(Connection);
+
+            var plants = plant.GetPlantList(new PlantModel());
 
             DepartmentData department = new DepartmentData(Connection);
 

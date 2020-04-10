@@ -1,26 +1,13 @@
-﻿using FactorySystems.CommonLibrary.ViewModels;
+﻿using FactorySystems.CommonLibrary.PersistanceModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace FactorySystems.CommonLibrary.PersistanceModels
+namespace FactorySystems.CommonLibrary.ViewModels
 {
-    /// <summary>
-    /// Types of params from SQL:
-    /// [PlantId] INT IDENTITY(1, 1) NOT NULL,
-    /// [Name]    NVARCHAR(200) NOT NULL,
-    /// [Address] NVARCHAR(200) NULL,
-    /// [City] NVARCHAR(200) NULL,
-    /// [Phone] NVARCHAR(20)  NULL,
-    /// [Email] NVARCHAR(200) NULL,
-    /// </summary>
-    public class PlantModel
+    public class PlantVM
     {
-        /// <summary>
-        /// Default constructor to initialize the properties with default value
-        /// </summary>
-        public PlantModel()
+        public PlantVM()
         {
             PlantId = 0;
             Name = "%";
@@ -29,8 +16,7 @@ namespace FactorySystems.CommonLibrary.PersistanceModels
             Phone = "%";
             Email = "%";
         }
-
-        public PlantModel(PlantVM model)
+        public PlantVM(PlantModel model)
         {
             PlantId = model.PlantId;
             Name = model.Name;
@@ -39,11 +25,7 @@ namespace FactorySystems.CommonLibrary.PersistanceModels
             Phone = model.Phone;
             Email = model.Email;
         }
-        /// <summary>
-        /// Annotation for getting the property name in DAL
-        /// Primary key in SQL
-        /// </summary>        
-        [Key]
+
         public int PlantId { get; set; }
         /// <summary>
         /// Name of the plant
@@ -65,6 +47,5 @@ namespace FactorySystems.CommonLibrary.PersistanceModels
         /// Email Address
         /// </summary>
         public string Email { get; set; }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FactorySystems.CommonLibrary.PersistanceModels;
+using FactorySystems.CommonLibrary.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

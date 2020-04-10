@@ -1,4 +1,5 @@
 ﻿using FactorySystems.CommonLibrary.PersistanceModels;
+using FactorySystems.CommonLibrary.ViewModels;
 using FactorySystems.DALibrary;
 using System;
 using System.Collections.Generic;
@@ -37,12 +38,14 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// Get all the plants from db based on plant object params
         /// </summary>
         /// <param name="plant">Model to search for. Params must be initialized with '%' for search</param>
-        /// <returns></returns>
+        /// <returns>List of plants VM</returns>
         public Task<List<PlantModel>> GetPlantList(PlantModel plant)
         {
             string procName = "Company.PlantSelect";
 
-            return _db.LoadDataAsync<PlantModel, dynamic>(procName, plant);
+            var results = _db.LoadDataAsync<PlantModel, dynamic>(procName, plant);
+
+            return results;
         }
 
         /// <summary>

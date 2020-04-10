@@ -1,0 +1,54 @@
+﻿@page
+@model FactorySystems.CoreWebUI.Pages.Company.Plants.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Plant List</h1>
+
+<table class="table display" id="example">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.PlantId)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.City)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Address)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Phone)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Email)</th>
+            <th scope="col"></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var plant in Model.Plants)
+        {
+            <tr>
+                <th scope="row">@plant.PlantId</th>
+                <td>@plant.Name</td>
+                <td>@plant.City</td>
+                <td>@plant.Address</td>
+                <td>@plant.Phone</td>
+                <td>@plant.Email</td>
+                <td><a asp-page="./Edit" asp-route-plantId="@plant.PlantId"><i class="fa fa-edit">Edit</i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="~/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/datatables/js/dataTables.bootstrap4.js"></script>
+    <link href="~/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "scrollY": "500px",
+                "scrollCollapse": true,
+                "paging": false
+            });
+        });
+    </script>
+
+}
+
