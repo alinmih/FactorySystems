@@ -3,52 +3,84 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FactorySystems.CoreWebUI</title>
+    <title>@ViewData["Title"] - FactorySystems</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/font-awesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">FactorySystems.CoreWebUI</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/company/plants/list">Plant</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" asp-page="/Index">Factory Systems</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav px-3">
+                <vc:main-menu></vc:main-menu>
+            </ul>
+        </div>
+
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
+            <div class="col-2 bd-sidebar">
+                <ul class="nav flex-column">
+                    @if (Context.Request.Path.Value == "/Production")
+                    {
+                        <vc:production-menu></vc:production-menu>
+                    }
+                </ul>
+
+                <ul class="nav flex-column">
+                    @if (Context.Request.Path.Value == "/Production/Company")
+                    {
+                        <vc:production-menu></vc:production-menu>
+                        <div class="dropdown-divider"></div>
+                        <vc:company-menu></vc:company-menu>
+                    }
+                </ul>
+                <ul class="nav flex-column">
+                    @if (Context.Request.Path.Value == "/Production/Company/Plants/List")
+                    {
+                        <vc:production-menu></vc:production-menu>
+                        <div class="dropdown-divider"></div>
+                        <vc:company-menu></vc:company-menu>
+                    }
+                </ul>
+            </div>
+
+            <div class="d-none d-xl-block col-xl-2 bd-toc">
+                <a href="">New</a>
+                <p>Edit</p>
+                <p>Delete</p>
+                <p>List</p>
+            </div>
+            <main role="main" class="col-8">
+                @RenderBody()
+            </main>
+        </div>
+
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - FactorySystems.CoreWebUI - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+        <a class="navbar-brand" href="#">FactorySystems.CoreWebUI</a>
+    </nav>
+
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2020 - FactorySystems.CoreWebUI - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            </div>
+        </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+
+
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>

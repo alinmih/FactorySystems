@@ -1,0 +1,12 @@
+﻿@* Company *@
+
+@model IEnumerable<string>
+
+
+<h4>Company</h4>
+@foreach (var item in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link ml-3 my-1 text-dark" asp-page="/Production/Company/@item/List">@item</a>
+    </li>
+}

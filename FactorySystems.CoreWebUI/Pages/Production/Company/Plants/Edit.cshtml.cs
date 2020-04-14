@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FactorySystems.CoreWebUI.Pages.Company.Plants
+namespace FactorySystems.CoreWebUI.Pages.Production.Company.Plants
 {
     public class EditModel : PageModel
     {

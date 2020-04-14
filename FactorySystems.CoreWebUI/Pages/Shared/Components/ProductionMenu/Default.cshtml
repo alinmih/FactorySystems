@@ -1,0 +1,10 @@
+﻿@* Production *@
+
+@model IEnumerable<string>
+<h4>Production</h4>
+@foreach (var item in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-page="/Production/@item/index">@item</a>
+    </li>
+}

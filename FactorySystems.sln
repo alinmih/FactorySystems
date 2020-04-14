@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.ConsoleUI", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.CoreWebUI", "FactorySystems.CoreWebUI\FactorySystems.CoreWebUI.csproj", "{9FFBCFAD-7AF0-4008-89F6-E3039690FB58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystems.Root", "FactorySystems.Root\FactorySystems.Root.csproj", "{7921D08A-E90F-4D22-AD28-201AFD12F7A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactorySystems.Root", "FactorySystems.Root\FactorySystems.Root.csproj", "{7921D08A-E90F-4D22-AD28-201AFD12F7A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
