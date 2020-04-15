@@ -6,39 +6,52 @@
 
 <h3>Plant List</h3>
 
-<div>
-    <table class="table display">
-        <thead>
-            <tr>
-                <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.PlantId)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Name)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.City)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Address)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Phone)</th>
-                <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Email)</th>
-                <th scope="col"></th>
-            </tr>
+@if (Model.Message != null)
+{
+    <div class="alert-danger">@Model.Message</div>
+}
 
-        </thead>
-        <tbody>
-            @foreach (var plant in Model.Plants)
-            {
+<div class="row">
+    <div class="col-10">
+        <table class="table">
+            <thead>
                 <tr>
-                    <th scope="row">@plant.PlantId</th>
-                    <td>@plant.Name</td>
-                    <td>@plant.City</td>
-                    <td>@plant.Address</td>
-                    <td>@plant.Phone</td>
-                    <td>@plant.Email</td>
-                    <td><a asp-page="./Edit" asp-route-plantId="@plant.PlantId"><i class="fa fa-edit">Edit</i></a></td>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.PlantId)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.City)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Address)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Phone)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.PlantVM.Email)</th>
+                    <th scope="col"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+
+            </thead>
+            <tbody>
+                @foreach (var plant in Model.Plants)
+                {
+                    <tr>
+                        <th scope="row">@plant.PlantId</th>
+                        <td>@plant.Name</td>
+                        <td>@plant.City</td>
+                        <td>@plant.Address</td>
+                        <td>@plant.Phone</td>
+                        <td>@plant.Email</td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-plantId="@plant.PlantId"><i class="fa fa-edit">Edit</i></a>
+                            <a asp-page="./Delete" asp-route-plantId="@plant.PlantId"><i class="fa fa-eraser">Delete</i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-2">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" asp-page="./Edit">New Plant</a></li>
+        </ul>
+    </div>
 </div>
-
-
-
 @section Scripts {
     @*<script src="~/datatables/js/jquery.dataTables.js"></script>
         <script src="~/datatables/js/dataTables.bootstrap4.js"></script>
@@ -52,12 +65,12 @@
                 });
             });
         </script>*@
-    <script>
+    @*<script>
         $(".nav .nav-item .nav-link").on("click", function () {
             $(".nav .nav-item").find("li.active").removeClass("active");
             $(this).parent("li").addClass("active")
         });
-    </script>
+    </script>*@
 
 
 }

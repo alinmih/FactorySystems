@@ -41,7 +41,7 @@
                     }
                 </ul>
                 <ul class="nav flex-column">
-                    @if (Context.Request.Path.Value == "/Production/Company/Plants/List")
+                    @if (Context.Request.Path.Value.Contains("/Production/Company/Plants/"))
                     {
                         <vc:production-menu></vc:production-menu>
                         <div class="dropdown-divider"></div>
@@ -49,14 +49,7 @@
                     }
                 </ul>
             </div>
-
-            <div class="d-none d-xl-block col-xl-2 bd-toc">
-                <a href="">New</a>
-                <p>Edit</p>
-                <p>Delete</p>
-                <p>List</p>
-            </div>
-            <main role="main" class="col-8">
+            <main role="main" class="col-10">
                 @RenderBody()
             </main>
         </div>

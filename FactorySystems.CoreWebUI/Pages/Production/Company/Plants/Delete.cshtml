@@ -1,0 +1,15 @@
+﻿@page
+@model FactorySystems.CoreWebUI.Pages.Production.Company.Plants.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete!</h2>
+<div class="alert alert-danger">Are you sure you wwant to delete @Model.Plant.Name ?</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Yes!</button>
+
+    <a asp-page="./List" class="btn btn-info">No!</a>
+</form>
+

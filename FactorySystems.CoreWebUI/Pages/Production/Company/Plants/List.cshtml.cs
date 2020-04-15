@@ -16,13 +16,14 @@ namespace FactorySystems.CoreWebUI.Pages.Production.Company.Plants
         private readonly IPlantData plantData;
         private readonly IAdapter adapter;
 
-        private List<PlantModel> DbPlants= new List<PlantModel>();
+        [TempData]
+        public string Message { get; set; }
+
+        private List<PlantModel> DbPlants = new List<PlantModel>();
         private PlantModel PlantModel = new PlantModel();
 
         public List<PlantVM> Plants { get; set; } = new List<PlantVM>();
         public PlantVM PlantVM { get; set; } = new PlantVM();
-
-
 
         public ListModel(IPlantData plantData, IAdapter adapter)
         {

@@ -1,6 +1,7 @@
 ﻿using FactorySystems.CommonLibrary.PersistanceModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace FactorySystems.CommonLibrary.ViewModels
@@ -30,6 +31,7 @@ namespace FactorySystems.CommonLibrary.ViewModels
         /// <summary>
         /// Name of the plant
         /// </summary>
+        [Required]
         public string Name { get; set; }
         /// <summary>
         /// Address of the plant
