@@ -1,4 +1,5 @@
-﻿using FactorySystems.BLLibrary.CompanyData;
+﻿using FactorySystems.BLLibrary;
+using FactorySystems.BLLibrary.CompanyData;
 using FactorySystems.CommonLibrary.Adapters;
 using FactorySystems.DALibrary;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +20,7 @@ namespace FactorySystems.Root
         {
             services.AddScoped<ISqlDataAccess, SqlDataAccess>();
             services.AddScoped<IPlantData, PlantData>();
+            services.AddScoped<IDepartmentData, DepartmentData>();
             services.AddScoped<IAdapter, Adapter>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

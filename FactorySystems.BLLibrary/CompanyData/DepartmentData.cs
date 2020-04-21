@@ -5,19 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CSharp.RuntimeBinder;
 using FactorySystems.CommonLibrary.PersistanceModels;
+using FactorySystems.CommonLibrary.Adapters;
+using FactorySystems.CommonLibrary.ViewModels;
 
 namespace FactorySystems.BLLibrary.CompanyData
 {
-    public class DepartmentData
+    public class DepartmentData : IDepartmentData
     {
         /// <summary>
         /// Reference to Sql data access layer
         /// </summary>
         private readonly ISqlDataAccess _db;
+        private readonly IAdapter _adapter;
 
-        public DepartmentData(ISqlDataAccess db)
+        public DepartmentData(ISqlDataAccess db, IAdapter adapter)
         {
             _db = db;
+            _adapter = adapter;
         }
 
         /// <summary>
@@ -25,7 +29,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// </summary>
         /// <param name="department">PersistenceModel send as param with default or specific props</param>
         /// <returns></returns>
-        public Task<int> InsertDepartment(DepartmentModel department)
+        internal Task<int> InsertDepartment(DepartmentModel department)
         {
             string procName = "Company.DepartmentInsert";
 
@@ -35,11 +39,21 @@ namespace FactorySystems.BLLibrary.CompanyData
         }
 
         /// <summary>
+        /// Insert into DB a department object
+        /// </summary>
+        /// <param name="department">Deparment view model send as param with default or specific props</param>
+        /// <returns></returns>
+        public Task<int> InsertDepartment(DepartmentVM department)
+        {
+            return InsertDepartment(_adapter.Convert<DepartmentModel, DepartmentVM>(department));
+        }
+
+        /// <summary>
         /// Get all the departments from db based on department object params
         /// </summary>
         /// <param name="plant">Model to search for. Params must be initialized with '%' for search</param>
         /// <returns></returns>
-        public Task<List<DepartmentModel>> GetDepartmentList(DepartmentModel department)
+        internal Task<List<DepartmentModel>> GetDepartmentList(DepartmentModel department)
         {
             string procName = "Company.DepartmentSelect";
 
@@ -47,15 +61,57 @@ namespace FactorySystems.BLLibrary.CompanyData
         }
 
         /// <summary>
+        /// Get all the departments from db based on department object params
+        /// </summary>
+        /// <returns></returns>
+        internal Task<List<DepartmentModel>> GetDepartmentList()
+        {
+            DepartmentModel department = new DepartmentModel();
+            string procName = "Company.DepartmentSelect";
+
+            return _db.LoadDataAsync<DepartmentModel, dynamic>(procName, department);
+        }
+
+        /// <summary>
+        /// Get all the departments from db
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<DepartmentVM>> GetDepartments()
+        {
+            return _adapter.ConvertToList<DepartmentVM, DepartmentModel>(await GetDepartmentList());
+        }
+
+        /// <summary>
+        /// Get all the departments from db based on department object params
+        /// <param name="department">Model to search for.</param>
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<DepartmentVM>> GetDepartments(DepartmentVM department)
+        {
+            return _adapter.ConvertToList<DepartmentVM, DepartmentModel>(await GetDepartmentList(_adapter.Convert<DepartmentModel, DepartmentVM>(department)));
+        }
+
+
+        /// <summary>
         /// Update specific department from db
         /// </summary>
         /// <param name="department">Model to update</param>
         /// <returns></returns>
-        public Task UpdateDepartment(DepartmentModel department)
+        internal Task UpdateDepartment(DepartmentModel department)
         {
             string procName = "Company.DepartmentUpdate";
 
             return _db.UpdateDataAsync(procName, department);
+        }
+
+        /// <summary>
+        /// Update specific department from db
+        /// </summary>
+        /// <param name="department">Model to update</param>
+        /// <returns></returns>
+        public Task UpdateDepartment(DepartmentVM department)
+        {
+            return UpdateDepartment(_adapter.Convert<DepartmentModel, DepartmentVM>(department));
         }
 
         /// <summary>

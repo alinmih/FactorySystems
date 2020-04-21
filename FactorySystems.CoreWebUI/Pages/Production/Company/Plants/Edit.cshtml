@@ -5,37 +5,49 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editing @Model.Plant.Name</h1>
+<div class="row flex-xl-nowrap">
+    <div class="col-2 bd-sidebar">
+        <ul class="nav flex-column">
+            <vc:production-menu></vc:production-menu>
+        </ul>
+        <ul class="nav flex-column">
+            <vc:company-menu></vc:company-menu>
+        </ul>
+    </div>
+    <div class="col-10">
+
+        <h1>Editing @Model.Plant.Name</h1>
 
 
 
-<form method="post">
-    <input type="hidden" asp-for="Plant.PlantId" />
-    <div class="form-group">
-        <label asp-for="Plant.Name"></label>
-        <input asp-for="Plant.Name" class="form-control" />
-        <span class="text-danger" asp-validation-for="Plant.Name"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Plant.City"></label>
-        <input asp-for="Plant.City" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Plant.Address"></label>
-        <input asp-for="Plant.Address" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Plant.Phone"></label>
-        <input asp-for="Plant.Phone" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Plant.Email"></label>
-        <input asp-for="Plant.Email" class="form-control" />
-    </div>
+        <form method="post">
+            <input type="hidden" asp-for="Plant.PlantId" />
+            <div class="form-group">
+                <label asp-for="Plant.Name"></label>
+                <input asp-for="Plant.Name" class="form-control" />
+                <span class="text-danger" asp-validation-for="Plant.Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plant.City"></label>
+                <input asp-for="Plant.City" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Plant.Address"></label>
+                <input asp-for="Plant.Address" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Plant.Phone"></label>
+                <input asp-for="Plant.Phone" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Plant.Email"></label>
+                <input asp-for="Plant.Email" class="form-control" />
+            </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -1,0 +1,61 @@
+﻿@page
+@model FactorySystems.CoreWebUI.Pages.Production.Company.Departments.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="row flex-xl-nowrap">
+    <div class="col-2 bd-sidebar">
+        <ul class="nav flex-column">
+            <vc:production-menu></vc:production-menu>
+        </ul>
+        <ul class="nav flex-column">
+            <vc:company-menu></vc:company-menu>
+        </ul>
+    </div>
+    <div class="col-10">
+        <h3>Plant List</h3>
+        @if (Model.Message != null)
+        {
+            <div class="alert-danger">@Model.Message</div>
+        }
+        <div class="row">
+            <div class="col-10">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Department.DepartmentId)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Department.PlantId)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Department.Name)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Department.Description)</th>
+                            <th scope="col"></th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var department in Model.Departments)
+                        {
+                            <tr>
+                                <th scope="row">@department.DepartmentId</th>
+                                <td>@department.PlantId</td>
+                                <td>@department.Name</td>
+                                <td>@department.Description</td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-plantId="@department.DepartmentId"><i class="fa fa-edit">Edit</i></a>
+                                    <a asp-page="./Delete" asp-route-plantId="@department.DepartmentId"><i class="fa fa-eraser">Delete</i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-2">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" asp-page="./Edit">New Department</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

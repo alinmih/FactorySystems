@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FactorySystems.BLLibrary;
 using FactorySystems.BLLibrary.CompanyData;
 using FactorySystems.CommonLibrary.Adapters;
 using FactorySystems.CommonLibrary.PersistanceModels;
@@ -13,24 +14,21 @@ namespace FactorySystems.CoreWebUI.Pages.Production.Company.Plants
 {
     public class DeleteModel : PageModel
     {
-        private readonly IPlantData plantData;
-        private readonly IAdapter adapter;
+        private readonly IPlantData _plantData;
 
-        public PlantVM Plant { get; set; }
-        private PlantModel PlandDbModel { get; set; } = new PlantModel();
+        public PlantVM Plant { get; set; } = new PlantVM();
 
-        public DeleteModel(IPlantData plantData, IAdapter adapter)
+        public DeleteModel(IPlantData plantData)
         {
-            this.plantData = plantData;
-            this.adapter = adapter;
+            _plantData = plantData;
         }
-        public IActionResult OnGet(int plantId)
+        public async Task<IActionResult> OnGet(int plantId)
         {
-            PlandDbModel.PlantId = plantId;
-            var plant = plantData.GetPlantList(PlandDbModel).GetAwaiter().GetResult();
-            Plant = adapter.Convert<PlantVM, PlantModel>(plant.FirstOrDefault());
+            Plant.PlantId = plantId;
+            var plant = await _plantData.GetPlants(Plant);
+            Plant = plant.FirstOrDefault();
 
-            if (Plant==null)
+            if (Plant == null)
             {
                 return RedirectToPage("./NotFound");
             }
@@ -38,9 +36,9 @@ namespace FactorySystems.CoreWebUI.Pages.Production.Company.Plants
             return Page();
         }
 
-        public IActionResult OnPost(int plantId)
+        public async Task<IActionResult> OnPost(int plantId)
         {
-            plantData.DeletePlant(plantId).GetAwaiter().GetResult();
+            await _plantData.DeletePlant(plantId);
 
             TempData["Message"] = $"Plant deleted";
             return RedirectToPage("./List");

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FactorySystems.BLLibrary.CompanyData
 {
-    public class MachineStatusData
+    public class MachineStatusData : IMachineStatusData
     {
         /// <summary>
         /// Reference to Sql data access layer

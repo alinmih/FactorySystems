@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FactorySystems.BLLibrary;
 using FactorySystems.BLLibrary.CompanyData;
 using FactorySystems.CommonLibrary.Adapters;
 using FactorySystems.CommonLibrary.PersistanceModels;
@@ -13,38 +14,38 @@ namespace FactorySystems.CoreWebUI.Pages.Production.Company.Plants
 {
     public class ListModel : PageModel
     {
-        private readonly IPlantData plantData;
-        private readonly IAdapter adapter;
+        private readonly IPlantData _plantData;
 
         [TempData]
         public string Message { get; set; }
 
-        private List<PlantModel> DbPlants = new List<PlantModel>();
-        private PlantModel PlantModel = new PlantModel();
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
 
         public List<PlantVM> Plants { get; set; } = new List<PlantVM>();
         public PlantVM PlantVM { get; set; } = new PlantVM();
 
-        public ListModel(IPlantData plantData, IAdapter adapter)
+        public ListModel(IPlantData plantData)
         {
-            this.plantData = plantData;
-            this.adapter = adapter;
+            _plantData = plantData;
         }
 
         public void OnGet()
         {
-            DbPlants = plantData.GetPlantList(ConvertVMToPersistance(PlantVM)).GetAwaiter().GetResult();
-            Plants = ConvertPersistanceToVM(DbPlants);
-        }
+            if (SearchTerm == null)
+            {
+                Plants = _plantData.GetPlants().GetAwaiter().GetResult();
 
-        private PlantModel ConvertVMToPersistance(PlantVM plantVM)
-        {
-            return adapter.Convert<PlantModel, PlantVM>(plantVM);
-        }
+            }
+            else
+            {
+                PlantVM.Name = SearchTerm;
+                Plants = _plantData.GetPlants(PlantVM).GetAwaiter().GetResult();
+            }
 
-        private List<PlantVM> ConvertPersistanceToVM(List<PlantModel> dbPlants)
-        {
-            return adapter.ConvertToList<PlantVM, PlantModel>(dbPlants);
+            //DbPlants = plantData.GetPlantList(ConvertVMToPersistance(PlantVM)).GetAwaiter().GetResult();
+            //Plants = ConvertPersistanceToVM(DbPlants);
+            
         }
     }
 }

@@ -17,11 +17,11 @@ namespace FactorySystems.ConsoleUI
             InitializeConnection(DatabaseAccesType.Dapper);
 
             var Connection = GlobalConfig.Connection;
+            FactorySystems.CommonLibrary.Adapters.IAdapter adapter = new FactorySystems.CommonLibrary.Adapters.Adapter();
 
+            PlantData plant = new PlantData(Connection,adapter);
 
-            PlantData plant = new PlantData(Connection);
-
-            var plants = plant.GetPlantList(new PlantModel());
+            var plants = plant.GetPlants(new PlantVM());
 
             DepartmentData department = new DepartmentData(Connection);
 

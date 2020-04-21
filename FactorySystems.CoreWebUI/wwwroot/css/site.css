@@ -1,6 +1,5 @@
 ﻿.bd-sidebar {
-    border-right: 1px solid rgba(97,98,98,0.1);
-
+    border-right: 1px solid rgba(97,98,98,0.1)
 }
 
 .bd-toc {
@@ -16,4 +15,10 @@
 
 ul.nav a:hover {
     background-color: aqua !important;
+}
+
+.container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
 }

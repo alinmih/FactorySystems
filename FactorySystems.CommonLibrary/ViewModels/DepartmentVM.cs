@@ -1,24 +1,14 @@
-﻿using FactorySystems.CommonLibrary.ViewModels;
+﻿using FactorySystems.CommonLibrary.PersistanceModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace FactorySystems.CommonLibrary.PersistanceModels
+namespace FactorySystems.CommonLibrary.ViewModels
 {
-    /// <summary>
-    /// Types of params from SQL:
-    /// [DepartmentId] INT IDENTITY (1, 1) NOT NULL,
-    /// [PlantId] INT NOT NULL,
-    /// [Name] NVARCHAR(200)  NOT NULL,
-    /// [Description]  NVARCHAR(4000) NULL,
-    /// </summary>
-    public class DepartmentModel
+    public class DepartmentVM
     {
-        /// <summary>
-        /// Default constructor to initialize the properties with default value
-        /// </summary>
-        public DepartmentModel()
+        public DepartmentVM()
         {
             DepartmentId = 0;
             PlantId = 0;
@@ -26,7 +16,7 @@ namespace FactorySystems.CommonLibrary.PersistanceModels
             Description = "%";
         }
 
-        public DepartmentModel(DepartmentVM model)
+        public DepartmentVM(DepartmentModel model)
         {
             DepartmentId = model.DepartmentId;
             PlantId = model.PlantId;
@@ -36,24 +26,27 @@ namespace FactorySystems.CommonLibrary.PersistanceModels
         /// <summary>
         /// Annotation for getting the property name in DAL
         /// Primary key in SQL
-        /// </summary>        
-        [Key]
+        /// </summary>     
         public int DepartmentId { get; set; }
 
         /// <summary>
         /// Id of the plant in department table
         /// Foreign key
         /// </summary>
+        [Required]
         public int PlantId { get; set; }
 
         /// <summary>
         /// Name of the department
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
         /// Description of the department
         /// </summary>
         public string Description { get; set; }
+
+        public PlantVM Plant { get; set; }
     }
 }

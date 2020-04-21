@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FactorySystems.CoreWebUI.ViewComponents
 {
-    enum Company
+    public enum Company
     {
         Plants,
         Departments,

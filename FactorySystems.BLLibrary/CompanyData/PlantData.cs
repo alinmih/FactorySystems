@@ -1,4 +1,5 @@
-﻿using FactorySystems.CommonLibrary.PersistanceModels;
+﻿using FactorySystems.CommonLibrary.Adapters;
+using FactorySystems.CommonLibrary.PersistanceModels;
 using FactorySystems.CommonLibrary.ViewModels;
 using FactorySystems.DALibrary;
 using System;
@@ -14,18 +15,20 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// Reference to Sql data access layer
         /// </summary>
         private readonly ISqlDataAccess _db;
+        private readonly IAdapter _adapter;
 
-        public PlantData(ISqlDataAccess db)
+        public PlantData(ISqlDataAccess db, IAdapter adapter)
         {
             _db = db;
+            _adapter = adapter;
         }
 
         /// <summary>
         /// Insert into DB a plant object
         /// </summary>
-        /// <param name="plant"></param>
+        /// <param name="plant">Persistence model</param>
         /// <returns></returns>
-        public Task<int> InsertPlant(PlantModel plant)
+        internal Task<int> InsertPlant(PlantModel plant)
         {
             string procName = "Company.PlantInsert";
 
@@ -35,11 +38,21 @@ namespace FactorySystems.BLLibrary.CompanyData
         }
 
         /// <summary>
+        /// Insert into DB a plant object
+        /// </summary>
+        /// <param name="plant">View model</param>
+        /// <returns></returns>
+        public Task<int> InsertPlant(PlantVM plant)
+        {
+            return InsertPlant(_adapter.Convert<PlantModel, PlantVM>(plant));
+        }
+
+        /// <summary>
         /// Get all the plants from db based on plant object params
         /// </summary>
         /// <param name="plant">Model to search for. Params must be initialized with '%' for search</param>
         /// <returns>List of plants VM</returns>
-        public Task<List<PlantModel>> GetPlantList(PlantModel plant)
+        internal Task<List<PlantModel>> GetPlantList(PlantModel plant)
         {
             string procName = "Company.PlantSelect";
 
@@ -48,16 +61,64 @@ namespace FactorySystems.BLLibrary.CompanyData
             return results;
         }
 
+
+        /// <summary>
+        /// Get all the plants from db based on plant object params
+        /// </summary>
+        /// <param name="plant">Model to search for. Params must be initialized with '%' for search</param>
+        /// <returns>List of plants model</returns>
+        internal Task<List<PlantModel>> GetPlantList()
+        {
+            PlantModel plant = new PlantModel();
+            string procName = "Company.PlantSelect";
+
+            var results = _db.LoadDataAsync<PlantModel, dynamic>(procName, plant);
+
+            return results;
+        }
+        /// <summary>
+        /// Get all the plants from db
+        /// </summary>
+        /// <returns>List of plants VM</returns>
+        public async Task<List<PlantVM>> GetPlants()
+        {
+            var plants = _adapter.ConvertToList<PlantVM, PlantModel>(await GetPlantList());
+            
+            return plants;
+        }
+        /// <summary>
+        /// Get all the plants from db based on plant object params
+        /// </summary>
+        /// <param name="plant">Model to search for. Params must be initialized with '%' for search</param>
+        /// <returns>List of plants VM</returns>
+        public async Task<List<PlantVM>> GetPlants(PlantVM plant)
+        {
+            var plants = _adapter.ConvertToList<PlantVM, PlantModel>(await GetPlantList(_adapter.Convert<PlantModel,PlantVM>(plant)));
+
+            return plants;
+        }
+
+
         /// <summary>
         /// Update specific plant from db
         /// </summary>
-        /// <param name="plant">Model to update</param>
+        /// <param name="plant">PlantModel</param>
         /// <returns></returns>
-        public Task UpdatePlant(PlantModel plant)
+        internal Task UpdatePlant(PlantModel plant)
         {
             string procName = "Company.PlantUpdate";
 
             return _db.UpdateDataAsync(procName, plant);
+        }
+
+        /// <summary>
+        /// Update specific PlantModel from db
+        /// </summary>
+        /// <param name="plant">PlantVM</param>
+        /// <returns></returns>
+        public Task UpdatePlant(PlantVM plant)
+        {
+            return UpdatePlant(_adapter.Convert<PlantModel, PlantVM>(plant));
         }
 
         /// <summary>

@@ -49,5 +49,7 @@ namespace FactorySystems.CommonLibrary.ViewModels
         /// Email Address
         /// </summary>
         public string Email { get; set; }
+
+        public List<DepartmentVM> Departments { get; set; } = new List<DepartmentVM>();
     }
 }

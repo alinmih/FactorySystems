@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace FactorySystems.BLLibrary.CompanyData
+namespace FactorySystems.BLLibrary
 {
     public interface ICostCenterData
     {

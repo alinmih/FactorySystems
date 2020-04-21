@@ -65,7 +65,7 @@ namespace FactorySystems.DALibrary
                     }
                     p.Add($"@{item.Name}", item.Value);
                 }
-
+                
                 // Execute sql command
                 var data = await connection.ExecuteAsync(procName, p, commandType: CommandType.StoredProcedure);
 
