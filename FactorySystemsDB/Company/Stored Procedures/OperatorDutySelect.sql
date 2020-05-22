@@ -10,6 +10,6 @@ BEGIN
 
 	SELECT DutyId, DutyName
 	FROM Company.OperatorDuty WITH (NOLOCK)
-	WHERE ((DutyId=@DutyId)or(@DutyId=0)) and
-		 DutyName like @DutyName
+	WHERE ((DutyId=@DutyId)or(@DutyId=0))
+		 AND dbo.fn_CheckParamIsNull(DutyName,@DutyName)=1;
 END

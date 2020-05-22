@@ -17,19 +17,19 @@ namespace FactorySystems.DALibrary
     public class SqlDataAccess : ISqlDataAccess
     {
         //Get connection string from GlobalConfig static class
-        private readonly IConfiguration configuration;
-        private string connectionString;
+        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
 
 
         public SqlDataAccess()
         {
-            connectionString = GlobalConfig.GetConnectionString();
+            _connectionString = GlobalConfig.GetConnectionString();
         }
 
         public SqlDataAccess(IConfiguration configuration)
         {
-            this.configuration = configuration;
-            connectionString = this.configuration.GetConnectionString("Default");
+            _configuration = configuration;
+            _connectionString = _configuration.GetConnectionString("Default");
 
         }
 
@@ -44,7 +44,7 @@ namespace FactorySystems.DALibrary
         public async Task<V> SaveDataAsync<U, V>(string procName, U parameters)
         {
             
-            using (IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new SqlConnection(_connectionString))
             {
                 var p = new DynamicParameters();
 
@@ -88,7 +88,7 @@ namespace FactorySystems.DALibrary
         {
             //connectionString = configuration.GetConnectionString("Default");
 
-            using (IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new SqlConnection(_connectionString))
             {
                 // Execute sql command
                 var data = await connection.QueryAsync<T>(procName, parameters, commandType: CommandType.StoredProcedure);
@@ -106,7 +106,7 @@ namespace FactorySystems.DALibrary
         /// <returns>Returns void</returns>
         public async Task UpdateDataAsync<U>(string procName, U parameters)
         {
-            using (IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new SqlConnection(_connectionString))
             {
                 // Execute sql command
                 var data = await connection.ExecuteAsync(procName, parameters, commandType: CommandType.StoredProcedure);
@@ -123,7 +123,7 @@ namespace FactorySystems.DALibrary
         /// <returns>Returns void</returns>
         public async Task DeleteDataAsync<U>(string procName, U parameters)
         {
-            using (IDbConnection connection = new SqlConnection(connectionString))
+            using (IDbConnection connection = new SqlConnection(_connectionString))
             {
                 // Execute sql command
                 var data = await connection.ExecuteAsync(procName, parameters, commandType: CommandType.StoredProcedure);

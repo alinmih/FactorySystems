@@ -1,0 +1,43 @@
+﻿@page "{departmentId:int?}"
+
+@model FactorySystems.CoreWebUI.Pages.Production.Company.Departments.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row flex-xl-nowrap">
+    <div class="col-2 bd-sidebar">
+        <ul class="nav flex-column">
+            <vc:production-menu></vc:production-menu>
+        </ul>
+        <ul class="nav flex-column">
+            <vc:company-menu></vc:company-menu>
+        </ul>
+    </div>
+    <div class="col-10">
+
+        <h1>Editing @Model.Department.Name</h1>
+
+        <form method="post">
+            <input type="hidden" asp-for="Department.DepartmentId" />
+            <div class="form-group">
+                <label asp-for="Department.Name"></label>
+                <input asp-for="Department.Name" class="form-control" />
+                <span class="text-danger" asp-validation-for="Department.Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department.Description"></label>
+                <input asp-for="Department.Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Department.Plant.Name"></label>
+                <select asp-for="Department.PlantId" asp-items="Model.PlantsList" class="form-control"></select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+
+    </div>
+</div>
+

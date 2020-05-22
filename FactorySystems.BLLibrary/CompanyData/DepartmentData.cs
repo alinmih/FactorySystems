@@ -7,6 +7,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using FactorySystems.CommonLibrary.PersistanceModels;
 using FactorySystems.CommonLibrary.Adapters;
 using FactorySystems.CommonLibrary.ViewModels;
+using System.Linq;
 
 namespace FactorySystems.BLLibrary.CompanyData
 {
@@ -17,11 +18,13 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// </summary>
         private readonly ISqlDataAccess _db;
         private readonly IAdapter _adapter;
+        private readonly IPlantData _plantData;
 
-        public DepartmentData(ISqlDataAccess db, IAdapter adapter)
+        public DepartmentData(ISqlDataAccess db, IAdapter adapter, IPlantData plantData)
         {
             _db = db;
             _adapter = adapter;
+            _plantData = plantData;
         }
 
         /// <summary>
@@ -78,7 +81,17 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns></returns>
         public async Task<List<DepartmentVM>> GetDepartments()
         {
-            return _adapter.ConvertToList<DepartmentVM, DepartmentModel>(await GetDepartmentList());
+            //PlantData plantData = new PlantData(_db, _adapter);
+            List<DepartmentVM> departments = _adapter
+                .ConvertToList<DepartmentVM, DepartmentModel>(await GetDepartmentList());
+            PlantVM plant = new PlantVM();
+            foreach (var item in departments)
+            {
+                plant.PlantId = item.PlantId;
+                item.Plant = _plantData.GetPlants(plant).GetAwaiter().GetResult().FirstOrDefault();
+            }
+
+            return departments;
         }
 
         /// <summary>
@@ -88,7 +101,17 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns></returns>
         public async Task<List<DepartmentVM>> GetDepartments(DepartmentVM department)
         {
-            return _adapter.ConvertToList<DepartmentVM, DepartmentModel>(await GetDepartmentList(_adapter.Convert<DepartmentModel, DepartmentVM>(department)));
+            List<DepartmentVM> departments = _adapter
+                .ConvertToList<DepartmentVM, DepartmentModel>(
+                await GetDepartmentList(_adapter.Convert<DepartmentModel, DepartmentVM>(department)));
+            PlantVM plant = new PlantVM();
+            foreach (var item in departments)
+            {
+                plant.PlantId = item.PlantId;
+                item.Plant = _plantData.GetPlants(plant).GetAwaiter().GetResult().FirstOrDefault();
+            }
+
+            return departments;
         }
 
 

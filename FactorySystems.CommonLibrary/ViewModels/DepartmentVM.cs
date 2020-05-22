@@ -47,6 +47,9 @@ namespace FactorySystems.CommonLibrary.ViewModels
         /// </summary>
         public string Description { get; set; }
 
+        /// <summary>
+        /// Reference to plant model
+        /// </summary>
         public PlantVM Plant { get; set; }
     }
 }

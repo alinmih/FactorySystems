@@ -65,6 +65,7 @@
     <Folder Include="Company\Stored Procedures\" />
     <Folder Include="dbo\User Defined Types\" />
     <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\ErrorLog.sql" />
@@ -123,6 +124,8 @@
     <Build Include="Company\Stored Procedures\OperatorDutyInsert.sql" />
     <Build Include="Company\Stored Procedures\OperatorDutyDelete.sql" />
     <Build Include="Company\Stored Procedures\OperatorDelete.sql" />
+    <Build Include="dbo\Functions\fn_CheckParamIsNull.sql" />
+    <Build Include="dbo\Functions\fn_CheckDateIsNull.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compares\SqlSchemaCompareWithSSMS.scmp" />

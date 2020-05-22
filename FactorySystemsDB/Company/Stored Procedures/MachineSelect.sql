@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE Company.MachineSelect
+﻿CREATE PROCEDURE [Company].[MachineSelect]
 (@MachineId         [INT], 
  @CostCenterId      [INT], 
  @MachineCategoryId [INT], 
@@ -41,15 +41,15 @@ AS
              AND ((CC.CostCenterId = @CostCenterId) OR (@CostCenterId = 0))
              AND ((MC.MachineCategoryId = @MachineCategoryId) OR (@MachineCategoryId = 0))
              AND ((MS.MachineStatusId = @MachineStatusId) OR (@MachineStatusId = 0))
-             AND M.Name LIKE @Name
-             AND M.Description LIKE @Description
+             AND dbo.fn_CheckParamIsNull(m.Name,@Name)=1
+             AND dbo.fn_CheckParamIsNull(m.Description,@Description)=1
              AND ((M.RatePerHour = @RatePerHour) OR (@RatePerHour = 0))
              AND ((M.SetupTime = @SetupTime) OR (@SetupTime = 0))
              AND ((M.ProcessTime = @ProcessTime) OR (@ProcessTime = 0))
              AND ((M.PartsPerCycle = @PartsPerCycle) OR (@PartsPerCycle = 0))
-             AND ((M.AlarmOnOff = @AlarmOnOff) OR (@AlarmOnOff = -1))
-             AND M.AlarmDate <= @AlarmDate
-             AND M.ActivityDate <= @ActivityDate
-             AND M.LastActivityDate <= @LastActivityDate
-             AND M.ModifiedDate <= @ModifiedDate;
+             AND dbo.fn_CheckParamIsNull(m.AlarmOnOff,@AlarmOnOff)=1
+             AND dbo.fn_CheckDateIsNull(M.AlarmDate ,@AlarmDate)=1
+			 AND dbo.fn_CheckDateIsNull(M.ActivityDate ,@ActivityDate)=1
+			 AND dbo.fn_CheckDateIsNull(M.LastActivityDate ,@LastActivityDate)=1
+			 AND dbo.fn_CheckDateIsNull(M.ModifiedDate ,@ModifiedDate)=1
     END;

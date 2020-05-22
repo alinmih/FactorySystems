@@ -15,7 +15,6 @@ namespace FactorySystems.CoreWebUI.Pages.Production.Company.Departments
     public class ListModel : PageModel
     {
         private readonly IDepartmentData _departmentData;
-        private readonly IPlantData _plantData;
 
         public List<DepartmentVM> Departments { get; set; } = new List<DepartmentVM>();
         public List<PlantVM> Plants { get; set; } = new List<PlantVM>();
@@ -27,27 +26,15 @@ namespace FactorySystems.CoreWebUI.Pages.Production.Company.Departments
         public string Message { get; set; }
 
 
-        public ListModel(IDepartmentData departmentData, IPlantData plantData)
+        public ListModel(IDepartmentData departmentData)
         {
             _departmentData = departmentData;
-            _plantData = plantData;
         }
         public void OnGet()
         {
-            Departments=_departmentData.GetDepartments().GetAwaiter().GetResult();
-            Plants = _plantData.GetPlants().GetAwaiter().GetResult();
-
-            //foreach (var plant in Plants)
-            //{
-            //    plant.Departments=
-            //}
-            //PlantVM{ PlantId = plant.PlantId,Address = plant.Address,City = plant.City, Email = plant.Email,Name = plant.Name,Phone = plant.Phone,Departments = Departments };
-            var query = from plant in Plants
-                        join department in Departments on plant.PlantId equals department.PlantId
-                        select new DepartmentVM { DepartmentId = department.DepartmentId, PlantId = plant.PlantId, Plant = plant, Name = department.Name, Description = department.Description };
-
-            var asd = query.ToList();
             
+            Departments =_departmentData.GetDepartments(Department).GetAwaiter().GetResult();
+           
         }
 
     }

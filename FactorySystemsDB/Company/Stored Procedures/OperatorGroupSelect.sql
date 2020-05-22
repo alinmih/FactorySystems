@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE Company.OperatorGroupSelect
+﻿CREATE PROCEDURE [Company].[OperatorGroupSelect]
 (@OperatorGroupId [INT], 
  @GroupName       [NVARCHAR](200)
 )
@@ -9,5 +9,5 @@ AS
                GroupName
         FROM Company.OperatorGroup WITH(NOLOCK)
         WHERE((OperatorGroupId = @OperatorGroupId) OR (@OperatorGroupId = 0))
-             AND GroupName LIKE @GroupName;
+             AND dbo.fn_CheckParamIsNull(GroupName,@GroupName)=1;
     END;

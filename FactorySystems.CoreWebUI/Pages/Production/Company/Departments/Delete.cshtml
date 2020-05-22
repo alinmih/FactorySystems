@@ -1,0 +1,29 @@
+﻿@page
+@model FactorySystems.CoreWebUI.Pages.Production.Company.Departments.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<div class="row flex-xl-nowrap">
+    <div class="col-2 bd-sidebar">
+        <ul class="nav flex-column">
+            <vc:production-menu></vc:production-menu>
+        </ul>
+        <ul class="nav flex-column">
+            <vc:company-menu></vc:company-menu>
+        </ul>
+    </div>
+    <div class="col-10">
+        <h2>Delete!</h2>
+        <div class="alert alert-danger">Are you sure you wwant to delete @Model.Department.Name ?</div>
+
+        <form method="post">
+            <button type="submit" class="btn btn-danger">Yes!</button>
+
+            <a asp-page="./List" class="btn btn-info">No!</a>
+        </form>
+
+    </div>
+</div>

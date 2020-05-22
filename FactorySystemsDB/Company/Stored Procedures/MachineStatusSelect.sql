@@ -10,5 +10,5 @@ AS
         FROM Company.MachineStatus S WITH(NOLOCK)
         WHERE((S.MachineStatusId = @MachineStatusId)
               OR (@MachineStatusId = 0))
-             AND S.STATUS LIKE  @Status;
+             AND dbo.fn_CheckParamIsNull(Status,@Status)=1;
     END;

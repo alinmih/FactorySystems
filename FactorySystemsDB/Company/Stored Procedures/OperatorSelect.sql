@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE Company.OperatorSelect
+﻿CREATE PROCEDURE [Company].[OperatorSelect]
 (@OperatorId      [INT], 
  @DutyId          [INT], 
  @OperatorGroupId [INT], 
@@ -27,8 +27,8 @@ AS
              AND ((OD.DutyId = @DutyId) OR (@DutyId = 0))
              AND ((OG.OperatorGroupId = @OperatorGroupId) OR (@OperatorGroupId = 0))
              AND ((D.DepartmentId = @DepartmentId) OR (@DepartmentId = 0))
-             AND BadgeNumber LIKE @BadgeNumber
-             AND FirstName LIKE @FirstName
-             AND LastName LIKE @LastName
-             AND LastActionTime <= @LastActionTime;
+			 AND dbo.fn_CheckParamIsNull(BadgeNumber,@BadgeNumber)=1
+			 AND dbo.fn_CheckParamIsNull(FirstName,@FirstName)=1
+			 AND dbo.fn_CheckParamIsNull(LastName,@LastName)=1
+			 AND dbo.fn_CheckDateIsNull(LastActionTime,@LastActionTime)=1
     END;

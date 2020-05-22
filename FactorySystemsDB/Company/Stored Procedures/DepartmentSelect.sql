@@ -1,4 +1,4 @@
-﻿CREATE PROC Company.DepartmentSelect
+﻿CREATE PROC [Company].[DepartmentSelect]
 (@DepartmentId INT, 
  @PlantId      INT, 
  @Name         [NVARCHAR](200), 
@@ -11,11 +11,12 @@ AS
                d.PlantId, 
                d.Name, 
                d.Description
-        FROM Company.Department D(NOLOCK)
+        FROM Company.Department D  (NOLOCK)
              INNER JOIN Company.Plant P ON d.PlantId = p.PlantId
         WHERE((d.DepartmentId = @DepartmentId)
               OR (@DepartmentId = 0))
              AND ((p.PlantId = @PlantId)
                   OR (@PlantId = 0))
-             AND d.Name LIKE @Name;
+			 AND dbo.fn_CheckParamIsNull(d.Name,@name)=1
+			 AND dbo.fn_CheckParamIsNull(d.Description,@Description)=1
     END;

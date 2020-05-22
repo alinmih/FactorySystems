@@ -1,4 +1,4 @@
-﻿CREATE PROC Company.PlantSelect
+﻿CREATE PROC [Company].[PlantSelect]
 (@PlantId INT, 
  @Name    [NVARCHAR](200), 
  @Address [NVARCHAR](200), 
@@ -15,12 +15,11 @@ AS
                City, 
                Phone, 
                Email
-        FROM Company.Plant(NOLOCK)
-        WHERE((PlantId = @PlantId)
-              OR (@PlantId = 0))
-             AND Name LIKE @Name
-             AND Address LIKE @Address
-             AND City LIKE @City
-             AND Phone LIKE @Phone
-             AND Email LIKE @Email;
+        FROM Company.Plant (NOLOCK)
+        WHERE((PlantId = @PlantId) OR (@PlantId = 0))
+			  AND dbo.fn_CheckParamIsNull(Name,@Name)=1
+			  AND dbo.fn_CheckParamIsNull(Address,@Address)=1
+			  AND dbo.fn_CheckParamIsNull(City,@City)=1
+			  AND dbo.fn_CheckParamIsNull(Phone,@Phone)=1
+			  AND dbo.fn_CheckParamIsNull(Email,@Email)=1
     END;

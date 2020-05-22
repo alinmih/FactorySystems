@@ -14,7 +14,7 @@
         </ul>
     </div>
     <div class="col-10">
-        <h3>Plant List</h3>
+        <h3>Department List</h3>
         @if (Model.Message != null)
         {
             <div class="alert-danger">@Model.Message</div>
@@ -26,6 +26,7 @@
                         <tr>
                             <th scope="col">@Html.DisplayNameFor(model => model.Department.DepartmentId)</th>
                             <th scope="col">@Html.DisplayNameFor(model => model.Department.PlantId)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Department.Plant.Name)</th>
                             <th scope="col">@Html.DisplayNameFor(model => model.Department.Name)</th>
                             <th scope="col">@Html.DisplayNameFor(model => model.Department.Description)</th>
                             <th scope="col"></th>
@@ -38,11 +39,12 @@
                             <tr>
                                 <th scope="row">@department.DepartmentId</th>
                                 <td>@department.PlantId</td>
+                                <td>@department.Plant.Name</td>
                                 <td>@department.Name</td>
                                 <td>@department.Description</td>
                                 <td>
-                                    <a asp-page="./Edit" asp-route-plantId="@department.DepartmentId"><i class="fa fa-edit">Edit</i></a>
-                                    <a asp-page="./Delete" asp-route-plantId="@department.DepartmentId"><i class="fa fa-eraser">Delete</i></a>
+                                    <a asp-page="./Edit" asp-route-departmentId="@department.DepartmentId"><i class="fa fa-edit">Edit</i></a>
+                                    <a asp-page="./Delete" asp-route-departmentId="@department.DepartmentId"><i class="fa fa-eraser">Delete</i></a>
                                 </td>
                             </tr>
                         }
