@@ -12,9 +12,9 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Reference to Sql data access layer
         /// </summary>
-        private readonly ISqlDataAccess _db;
+        private readonly IDataAccess _db;
 
-        public MachineData(ISqlDataAccess db)
+        public MachineData(IDataAccess db)
         {
             _db = db;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.MachineSelect";
 
-            return _db.LoadDataAsync<MachineModel, dynamic>(procName, machine);
+            return _db.GetDataAsync<MachineModel, dynamic>(procName, machine);
         }
 
         /// <summary>

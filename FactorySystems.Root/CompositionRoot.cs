@@ -18,7 +18,7 @@ namespace FactorySystems.Root
 
         public static void InjectServices(IServiceCollection services)
         {
-            services.AddScoped<ISqlDataAccess, SqlDataAccess>();
+            services.AddScoped<IDataAccess, DapperDataAccess>();
             services.AddScoped<IPlantData, PlantData>();
             services.AddScoped<IDepartmentData, DepartmentData>();
             services.AddScoped<IAdapter, Adapter>();

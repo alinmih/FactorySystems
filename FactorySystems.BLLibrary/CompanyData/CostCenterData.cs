@@ -12,9 +12,9 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Reference to Sql data access layer
         /// </summary>
-        private readonly ISqlDataAccess _db;
+        private readonly IDataAccess _db;
 
-        public CostCenterData(ISqlDataAccess db)
+        public CostCenterData(IDataAccess db)
         {
             _db = db;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.CostCenterSelect";
 
-            return _db.LoadDataAsync<CostCenterModel, dynamic>(procName, costCenter);
+            return _db.GetDataAsync<CostCenterModel, dynamic>(procName, costCenter);
         }
 
         /// <summary>

@@ -12,9 +12,9 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Reference to Sql data access layer
         /// </summary>
-        private readonly ISqlDataAccess _db;
+        private readonly IDataAccess _db;
 
-        public OperatorGroupData(ISqlDataAccess db)
+        public OperatorGroupData(IDataAccess db)
         {
             _db = db;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorGroupSelect";
 
-            return _db.LoadDataAsync<OperatorGroupModel, dynamic>(procName, group);
+            return _db.GetDataAsync<OperatorGroupModel, dynamic>(procName, group);
         }
 
         /// <summary>

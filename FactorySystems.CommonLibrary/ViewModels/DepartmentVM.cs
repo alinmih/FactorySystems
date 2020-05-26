@@ -10,10 +10,10 @@ namespace FactorySystems.CommonLibrary.ViewModels
     {
         public DepartmentVM()
         {
-            DepartmentId = 0;
-            PlantId = 0;
-            Name = "%";
-            Description = "%";
+            //DepartmentId = 0;
+            //PlantId = 0;
+            //Name = "%";
+            //Description = "%";
         }
 
         public DepartmentVM(DepartmentModel model)

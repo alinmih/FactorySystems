@@ -8,19 +8,19 @@ namespace FactorySystems.CommonLibrary.Adapters
 {
     public class PlantAdapter
     {
-        public List<PlantVM> GetPlantVMList(List<PlantModel> plants)
-        {
-            var plantVMs = new List<PlantVM>();
-            foreach (var item in plants)
-            {
-                plantVMs.Add(GetPlantVM(item));
-            }
-            return plantVMs;
-        }
+        //public List<PlantVM> GetPlantVMList(List<PlantModel> plants)
+        //{
+        //    var plantVMs = new List<PlantVM>();
+        //    foreach (var item in plants)
+        //    {
+        //        plantVMs.Add(GetPlantVM(item));
+        //    }
+        //    return plantVMs;
+        //}
 
-        private PlantVM GetPlantVM(PlantModel plantModel)
-        {
-            return new PlantVM(plantModel);
-        }
+        //private PlantVM GetPlantVM(PlantModel plantModel)
+        //{
+        //    return new //PlantVM(plantModel);
+        //}
     }
 }

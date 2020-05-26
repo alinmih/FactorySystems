@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace FactorySystems.DALibrary
 {
-    public interface ISqlDataAccess
+    public interface IDataAccess
     {
         Task<V> SaveDataAsync<U, V>(string procName, U parameters);
 
-        Task<List<T>> LoadDataAsync<T, U>(string procName, U parameters);
+        Task<List<T>> GetDataAsync<T, U>(string procName, U parameters);
 
         Task UpdateDataAsync<U>(string procName, U parameters);
 

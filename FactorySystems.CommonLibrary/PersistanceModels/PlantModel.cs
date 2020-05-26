@@ -22,12 +22,12 @@ namespace FactorySystems.CommonLibrary.PersistanceModels
         /// </summary>
         public PlantModel()
         {
-            PlantId = 0;
-            Name = "%";
-            Address = "%";
-            City = "%";
-            Phone = "%";
-            Email = "%";
+            //PlantId = 0;
+            //Name = "%";
+            //Address = "%";
+            //City = "%";
+            //Phone = "%";
+            //Email = "%";
         }
 
         public PlantModel(PlantVM model)

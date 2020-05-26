@@ -16,11 +16,11 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Reference to Sql data access layer
         /// </summary>
-        private readonly ISqlDataAccess _db;
+        private readonly IDataAccess _db;
         private readonly IAdapter _adapter;
         private readonly IPlantData _plantData;
 
-        public DepartmentData(ISqlDataAccess db, IAdapter adapter, IPlantData plantData)
+        public DepartmentData(IDataAccess db, IAdapter adapter, IPlantData plantData)
         {
             _db = db;
             _adapter = adapter;
@@ -48,7 +48,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns></returns>
         public Task<int> InsertDepartment(DepartmentVM department)
         {
-            return InsertDepartment(_adapter.Convert<DepartmentModel, DepartmentVM>(department));
+            return InsertDepartment(_adapter.ConvertToTFromU<DepartmentModel, DepartmentVM>(department));
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.DepartmentSelect";
 
-            return _db.LoadDataAsync<DepartmentModel, dynamic>(procName, department);
+            return _db.GetDataAsync<DepartmentModel, dynamic>(procName, department);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FactorySystems.BLLibrary.CompanyData
             DepartmentModel department = new DepartmentModel();
             string procName = "Company.DepartmentSelect";
 
-            return _db.LoadDataAsync<DepartmentModel, dynamic>(procName, department);
+            return _db.GetDataAsync<DepartmentModel, dynamic>(procName, department);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             //PlantData plantData = new PlantData(_db, _adapter);
             List<DepartmentVM> departments = _adapter
-                .ConvertToList<DepartmentVM, DepartmentModel>(await GetDepartmentList());
+                .ConvertToTListFromU<DepartmentVM, DepartmentModel>(await GetDepartmentList());
             PlantVM plant = new PlantVM();
             foreach (var item in departments)
             {
@@ -102,8 +102,8 @@ namespace FactorySystems.BLLibrary.CompanyData
         public async Task<List<DepartmentVM>> GetDepartments(DepartmentVM department)
         {
             List<DepartmentVM> departments = _adapter
-                .ConvertToList<DepartmentVM, DepartmentModel>(
-                await GetDepartmentList(_adapter.Convert<DepartmentModel, DepartmentVM>(department)));
+                .ConvertToTListFromU<DepartmentVM, DepartmentModel>(
+                await GetDepartmentList(_adapter.ConvertToTFromU<DepartmentModel, DepartmentVM>(department)));
             PlantVM plant = new PlantVM();
             foreach (var item in departments)
             {
@@ -134,7 +134,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns></returns>
         public Task UpdateDepartment(DepartmentVM department)
         {
-            return UpdateDepartment(_adapter.Convert<DepartmentModel, DepartmentVM>(department));
+            return UpdateDepartment(_adapter.ConvertToTFromU<DepartmentModel, DepartmentVM>(department));
         }
 
         /// <summary>

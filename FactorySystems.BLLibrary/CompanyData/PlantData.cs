@@ -14,10 +14,10 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Reference to Sql data access layer
         /// </summary>
-        private readonly ISqlDataAccess _db;
+        private readonly IDataAccess _db;
         private readonly IAdapter _adapter;
 
-        public PlantData(ISqlDataAccess db, IAdapter adapter)
+        public PlantData(IDataAccess db, IAdapter adapter)
         {
             _db = db;
             _adapter = adapter;
@@ -44,7 +44,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns></returns>
         public Task<int> InsertPlant(PlantVM plant)
         {
-            return InsertPlant(_adapter.Convert<PlantModel, PlantVM>(plant));
+            return InsertPlant(_adapter.ConvertToTFromU<PlantModel, PlantVM>(plant));
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.PlantSelect";
 
-            var results = _db.LoadDataAsync<PlantModel, dynamic>(procName, plant);
+            var results = _db.GetDataAsync<PlantModel, dynamic>(procName, plant);
 
             return results;
         }
@@ -72,7 +72,7 @@ namespace FactorySystems.BLLibrary.CompanyData
             PlantModel plant = new PlantModel();
             string procName = "Company.PlantSelect";
 
-            var results = _db.LoadDataAsync<PlantModel, dynamic>(procName, plant);
+            var results = _db.GetDataAsync<PlantModel, dynamic>(procName, plant);
 
             return results;
         }
@@ -82,8 +82,8 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns>List of plants VM</returns>
         public async Task<List<PlantVM>> GetPlants()
         {
-            var plants = _adapter.ConvertToList<PlantVM, PlantModel>(await GetPlantList());
-            
+            var plants = _adapter.ConvertToTListFromU<PlantVM, PlantModel>(await GetPlantList());
+
             return plants;
         }
         /// <summary>
@@ -93,7 +93,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns>List of plants VM</returns>
         public async Task<List<PlantVM>> GetPlants(PlantVM plant)
         {
-            var plants = _adapter.ConvertToList<PlantVM, PlantModel>(await GetPlantList(_adapter.Convert<PlantModel,PlantVM>(plant)));
+            var plants = _adapter.ConvertToTListFromU<PlantVM, PlantModel>(await GetPlantList(_adapter.ConvertToTFromU<PlantModel, PlantVM>(plant)));
 
             return plants;
         }
@@ -118,7 +118,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <returns></returns>
         public Task UpdatePlant(PlantVM plant)
         {
-            return UpdatePlant(_adapter.Convert<PlantModel, PlantVM>(plant));
+            return UpdatePlant(_adapter.ConvertToTFromU<PlantModel, PlantVM>(plant));
         }
 
         /// <summary>
@@ -127,6 +127,13 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <param name="plantId">Id of the plant</param>
         /// <returns></returns>
         public Task DeletePlant(int plantId)
+        {
+            var del = Delete(plantId);
+
+            return del;
+        }
+
+        internal Task Delete(int plantId)
         {
             string procName = "Company.PlantDelete";
 

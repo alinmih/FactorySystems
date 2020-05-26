@@ -10,12 +10,12 @@ namespace FactorySystems.CommonLibrary.ViewModels
     {
         public PlantVM()
         {
-            PlantId = 0;
-            Name = "%";
-            Address = "%";
-            City = "%";
-            Phone = "%";
-            Email = "%";
+            //PlantId = 0;
+            //Name = "%";
+            //Address = "%";
+            //City = "%";
+            //Phone = "%";
+            //Email = "%";
         }
         public PlantVM(PlantModel model)
         {

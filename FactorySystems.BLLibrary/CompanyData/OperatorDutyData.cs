@@ -12,9 +12,9 @@ namespace FactorySystems.BLLibrary.CompanyData
         /// <summary>
         /// Reference to Sql data access layer
         /// </summary>
-        private readonly ISqlDataAccess _db;
+        private readonly IDataAccess _db;
 
-        public OperatorDutyData(ISqlDataAccess db)
+        public OperatorDutyData(IDataAccess db)
         {
             _db = db;
         }
@@ -42,7 +42,7 @@ namespace FactorySystems.BLLibrary.CompanyData
         {
             string procName = "Company.OperatorDutySelect";
 
-            return _db.LoadDataAsync<OperatorDutyModel, dynamic>(procName, duty);
+            return _db.GetDataAsync<OperatorDutyModel, dynamic>(procName, duty);
         }
 
         /// <summary>

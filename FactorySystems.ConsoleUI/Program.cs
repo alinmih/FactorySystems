@@ -1,48 +1,97 @@
-﻿using FactorySystems.DALibrary;
-using static FactorySystems.DALibrary.GlobalConfig;
+﻿using FactorySystems.BLLibrary;
+using FactorySystems.BLLibrary.CompanyData;
+using FactorySystems.CommonLibrary.GlobalConfig;
+using FactorySystems.DALibrary;
+using FactorySystems.Root;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.IO;
-using FactorySystems.CommonLibrary.PersistanceModels;
 using System.Threading.Tasks;
-using FactorySystems.BLLibrary.CompanyData;
-using FactorySystems.CommonLibrary.ViewModels;
 
 namespace FactorySystems.ConsoleUI
 {
     class Program
     {
-        static async Task Main(string[] args)
+        public static IConfigurationRoot configuration;
+
+        static int Main(string[] args)
         {
-            InitializeConnection(DatabaseAccesType.Dapper);
+            Log.Logger = new LoggerConfiguration().WriteTo.Console(Serilog.Events.LogEventLevel.Debug).MinimumLevel.Debug().Enrich.FromLogContext().CreateLogger();
 
-            var Connection = GlobalConfig.Connection;
-            FactorySystems.CommonLibrary.Adapters.IAdapter adapter = new FactorySystems.CommonLibrary.Adapters.Adapter();
+            try
+            {
+                //Start
+                MainAsync(args).Wait();
+                return 0;
+            }
+            catch (Exception)
+            {
 
-            PlantData plant = new PlantData(Connection,adapter);
-
-            var plants = plant.GetPlants(new PlantVM());
-
-            DepartmentData department = new DepartmentData(Connection);
-
-            var d= await department.GetDepartmentList(new DepartmentModel());
-
-            CostCenterData costcenter = new CostCenterData(Connection);
-
-            MachineCategoryData machineCategory = new MachineCategoryData(Connection);
-
-            MachineStatusData machineStatus = new MachineStatusData(Connection);
-
-            MachineData machine = new MachineData(Connection);
-
-            OperatorDutyData operatorDuty = new OperatorDutyData(Connection);
-
-            OperatorGroupData operatorGroup = new OperatorGroupData(Connection);
-
-            OperatorData operatorData = new OperatorData(Connection);
-
- 
+                return 1;
+            }
         }
+
+        private static async Task MainAsync(string[] args)
+        {
+            // Create service collection
+            Log.Information("Creating service collection");
+            ServiceCollection serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+
+            // Create service provider
+            Log.Information("Building service provider");
+            IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
+
+            // Print connection string to demonstrate configuration object is populated
+            Console.WriteLine(configuration.GetConnectionString("Default"));
+
+            try
+            {
+                Log.Information("Starting service");
+                await serviceProvider.GetService<App>().Run();
+                Log.Information("Ending service");
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Error running service");
+                throw ex;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
+
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton(LoggerFactory.Create(builder =>
+                {
+                    builder.AddSerilog(dispose: true);
+                }
+            ));
+
+            services.AddLogging();
+
+            // Build configuration
+            configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                .AddJsonFile("appsettings.json", false)
+                .Build();
+
+
+            services.AddSingleton<IConfigurationRoot>(configuration);
+            CommonLibrary.GlobalConfig.GlobalConfig.ConnectionString = configuration.GetConnectionString("Default");
+
+            services.AddTransient<App>();
+
+            CompositionRoot.InjectServices(services);
+
+        }
+
 
 
     }

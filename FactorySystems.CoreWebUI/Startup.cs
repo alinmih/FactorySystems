@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using FactorySystems.Root;
+using FactorySystems.CommonLibrary.GlobalConfig;
 
 namespace FactorySystems.CoreWebUI
 {
@@ -25,9 +26,11 @@ namespace FactorySystems.CoreWebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            GlobalConfig.ConnectionString = Configuration.GetConnectionString("Default");
             //Resolve dependencies in root project
             CompositionRoot.InjectServices(services);
-
+            
             services.AddRazorPages();
         }
 
